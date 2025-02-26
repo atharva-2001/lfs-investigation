@@ -47,6 +47,7 @@ class PRDetails:
     state: str
     created_at: str
     cache_events: List[CacheEvent]
+    latest_run_timestamp: str = ""  # Added field for latest run timestamp
 
 def is_relevant_cache_key(key: str) -> bool:
     """Check if the cache key matches any of our patterns."""
@@ -165,6 +166,11 @@ def group_by_pr(workflow_logs_dir: str) -> Dict[str, PRDetails]:
     for run_dir in run_dirs:
         cache_events = analyze_workflow_run(run_dir)
         
+        # Get run timestamp from directory name
+        run_name = os.path.basename(run_dir)
+        timestamp_match = re.search(r'run_(\d{4}-\d{2}-\d{2}_\d{2}-\d{2}-\d{2})', run_name)
+        run_timestamp = timestamp_match.group(1) if timestamp_match else "Unknown"
+        
         # Try to find PR number in any of the files
         pr_number = None
         for root, _, files in os.walk(run_dir):
@@ -193,11 +199,16 @@ def group_by_pr(workflow_logs_dir: str) -> Dict[str, PRDetails]:
                         author=details['author'],
                         state=details['state'],
                         created_at=details['created_at'],
-                        cache_events=[]
+                        cache_events=[],
+                        latest_run_timestamp=run_timestamp
                     )
                 except requests.RequestException as e:
                     print(f"Error fetching PR #{pr_number} details: {e}")
                     continue
+            else:
+                # Update latest_run_timestamp if this run is more recent
+                if run_timestamp > pr_details[pr_number].latest_run_timestamp:
+                    pr_details[pr_number].latest_run_timestamp = run_timestamp
             
             pr_details[pr_number].cache_events.extend(cache_events)
     
@@ -244,20 +255,39 @@ def create_visualization(pr_details: Dict[str, PRDetails], output_dir: str):
     for pr_number, details in pr_details.items():
         hits = sum(1 for e in details.cache_events if e.event_type == 'hit')
         misses = sum(1 for e in details.cache_events if e.event_type == 'miss')
+        
+        # Convert timestamp format from "YYYY-MM-DD_HH-MM-SS" to "YYYY-MM-DD HH:MM:SS"
+        if details.latest_run_timestamp and details.latest_run_timestamp != "Unknown":
+            try:
+                # Split into date and time parts
+                date_str, time_str = details.latest_run_timestamp.split('_')
+                # Replace hyphens with colons only in time part
+                time_str = time_str.replace('-', ':')
+                formatted_timestamp = f"{date_str} {time_str}"
+                # Validate the timestamp format by trying to parse it
+                pd.to_datetime(formatted_timestamp)
+            except (ValueError, pd.errors.ParserError):
+                # If any parsing error occurs, use a default timestamp
+                print(f"Warning: Invalid timestamp format for PR #{pr_number}: {details.latest_run_timestamp}")
+                formatted_timestamp = "1970-01-01 00:00:00"
+        else:
+            formatted_timestamp = "1970-01-01 00:00:00"  # Default timestamp for unknown dates
+        
         data.append({
             'pr_number': f"#{pr_number}",
             'title': details.title,
             'author': details.author,
             'created_at': pd.to_datetime(details.created_at),
+            'latest_run': pd.to_datetime(formatted_timestamp),
             'hits': hits,
             'misses': misses,
             'total_events': len(details.cache_events),
             'hit_rate': (hits / len(details.cache_events) * 100) if details.cache_events else 0
         })
     
-    # Convert to DataFrame and sort by creation date
+    # Convert to DataFrame and sort by latest run timestamp
     df = pd.DataFrame(data)
-    df = df.sort_values('created_at')
+    df = df.sort_values('latest_run')
     
     # Create the visualization
     fig = make_subplots(
