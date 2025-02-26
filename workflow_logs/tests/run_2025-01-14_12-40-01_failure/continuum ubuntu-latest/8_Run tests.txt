@@ -1,0 +1,283 @@
+2025-01-14T12:41:15.8690838Z ##[group]Run pytest tardis --tardis-regression-data=/home/runner/work/tardis/tardis/tardis-regression-data --cov=tardis --cov-report=xml --cov-report=html --cov-append -m " continuum"
+2025-01-14T12:41:15.8693163Z [36;1mpytest tardis --tardis-regression-data=/home/runner/work/tardis/tardis/tardis-regression-data --cov=tardis --cov-report=xml --cov-report=html --cov-append -m " continuum"[0m
+2025-01-14T12:41:15.8728605Z shell: /usr/bin/bash -l {0}
+2025-01-14T12:41:15.8729103Z env:
+2025-01-14T12:41:15.8729596Z   CACHE_NUMBER: 0
+2025-01-14T12:41:15.8730768Z   PYTEST_FLAGS: --tardis-regression-data=/home/runner/work/tardis/tardis/tardis-regression-data --cov=tardis --cov-report=xml --cov-report=html --cov-append
+2025-01-14T12:41:15.8732044Z   CODECOV_TOKEN: 
+2025-01-14T12:41:15.8732532Z   MAMBA_ROOT_PREFIX: /home/runner/micromamba
+2025-01-14T12:41:15.8733401Z   MAMBA_EXE: /home/runner/micromamba-bin/micromamba
+2025-01-14T12:41:15.8734158Z   CONDARC: /home/runner/work/_temp/setup-micromamba/.condarc
+2025-01-14T12:41:15.8734917Z ##[endgroup]
+2025-01-14T12:41:25.5167770Z ============================= test session starts ==============================
+2025-01-14T12:41:25.5168661Z platform linux -- Python 3.12.4, pytest-8.2.2, pluggy-1.5.0
+2025-01-14T12:41:25.5169662Z rootdir: /home/runner/work/tardis/tardis
+2025-01-14T12:41:25.5170388Z configfile: pyproject.toml
+2025-01-14T12:41:25.5171213Z plugins: anyio-4.4.0, doctestplus-1.2.1, cov-5.0.0, html-4.1.1, metadata-3.1.1
+2025-01-14T12:41:25.5172132Z collected 1796 items / 1794 deselected / 2 selected
+2025-01-14T12:41:25.5172561Z 
+2025-01-14T12:42:12.2676965Z tardis/transport/montecarlo/estimators/tests/test_continuum_property_solver.py F [ 50%]
+2025-01-14T12:42:12.2678785Z                                                                          [ 50%]
+2025-01-14T12:42:45.1432680Z tardis/transport/montecarlo/tests/test_continuum.py F                    [100%]
+2025-01-14T12:42:45.1433625Z 
+2025-01-14T12:42:45.1433851Z =================================== FAILURES ===================================
+2025-01-14T12:42:45.1434711Z __________________________ test_continuum_estimators ___________________________
+2025-01-14T12:42:45.1435116Z 
+2025-01-14T12:42:45.1436527Z continuum_config = {'tardis_config_version': 'v1.0', 'supernova': {'luminosity_requested': <Quantity 4.31528298e+42 erg / s>, 'time_explo...': 10.0, 'survival_probability': 0.0, 'enable_biasing': False, 'virtual_packet_logging': False}}, 'config_dirname': ''}
+2025-01-14T12:42:45.1437837Z nlte_atomic_dataset = <Atomic Data UUID=None MD5=None Lines=69056 Levels=26012>
+2025-01-14T12:42:45.1438177Z 
+2025-01-14T12:42:45.1438289Z     @pytest.mark.continuum
+2025-01-14T12:42:45.1438568Z     def test_continuum_estimators(
+2025-01-14T12:42:45.1438815Z         continuum_config,
+2025-01-14T12:42:45.1439034Z         nlte_atomic_dataset,
+2025-01-14T12:42:45.1439267Z     ):
+2025-01-14T12:42:45.1439490Z         nlte_atomic_dataset = deepcopy(nlte_atomic_dataset)
+2025-01-14T12:42:45.1440038Z         continuum_simulation = Simulation.from_config(
+2025-01-14T12:42:45.1440494Z             continuum_config,
+2025-01-14T12:42:45.1440872Z             atom_data=nlte_atomic_dataset,
+2025-01-14T12:42:45.1441318Z             virtual_packet_logging=False,
+2025-01-14T12:42:45.1441723Z         )
+2025-01-14T12:42:45.1442043Z         # continuum_simulation.run_convergence()
+2025-01-14T12:42:45.1442435Z         continuum_properties_solver_dilute_bb = (
+2025-01-14T12:42:45.1442750Z             DiluteBlackBodyContinuumPropertiesSolver(
+2025-01-14T12:42:45.1443073Z                 continuum_simulation.plasma.atomic_data
+2025-01-14T12:42:45.1443335Z             )
+2025-01-14T12:42:45.1443505Z         )
+2025-01-14T12:42:45.1443667Z     
+2025-01-14T12:42:45.1443852Z         continuum_properties_dilute_bb = (
+2025-01-14T12:42:45.1444141Z             continuum_properties_solver_dilute_bb.solve(
+2025-01-14T12:42:45.1444498Z                 continuum_simulation.simulation_state.radiation_field_state,
+2025-01-14T12:42:45.1444854Z                 continuum_simulation.plasma.t_electrons,
+2025-01-14T12:42:45.1447122Z             )
+2025-01-14T12:42:45.1447395Z         )
+2025-01-14T12:42:45.1447646Z     
+2025-01-14T12:42:45.1447987Z         continuum_plasma = continuum_simulation.plasma
+2025-01-14T12:42:45.1448436Z     
+2025-01-14T12:42:45.1448738Z         pdt.assert_frame_equal(
+2025-01-14T12:42:45.1449273Z             continuum_properties_dilute_bb.photo_ionization_rate_coefficient,
+2025-01-14T12:42:45.1449860Z             continuum_simulation.plasma.gamma,
+2025-01-14T12:42:45.1450277Z         )
+2025-01-14T12:42:45.1450581Z         stimulated_recomb_rate_coeff = (
+2025-01-14T12:42:45.1451159Z             continuum_properties_dilute_bb.stimulated_recombination_rate_factor
+2025-01-14T12:42:45.1451727Z             * continuum_plasma.phi_ik.loc[
+2025-01-14T12:42:45.1452242Z                 continuum_properties_dilute_bb.stimulated_recombination_rate_factor.index
+2025-01-14T12:42:45.1453156Z             ]
+2025-01-14T12:42:45.1453438Z         )
+2025-01-14T12:42:45.1453690Z         pdt.assert_frame_equal(
+2025-01-14T12:42:45.1454013Z             stimulated_recomb_rate_coeff, continuum_plasma.alpha_stim
+2025-01-14T12:42:45.1454338Z         )
+2025-01-14T12:42:45.1454505Z     
+2025-01-14T12:42:45.1454693Z >       continuum_simulation.run_final()
+2025-01-14T12:42:45.1454875Z 
+2025-01-14T12:42:45.1455122Z tardis/transport/montecarlo/estimators/tests/test_continuum_property_solver.py:54: 
+2025-01-14T12:42:45.1455756Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2025-01-14T12:42:45.1456061Z tardis/simulation/base.py:558: in run_final
+2025-01-14T12:42:45.1456388Z     emitted_luminosity, v_packets_energy_hist = self.iterate(
+2025-01-14T12:42:45.1456704Z tardis/simulation/base.py:462: in iterate
+2025-01-14T12:42:45.1457038Z     transport_state = self.transport.initialize_transport_state(
+2025-01-14T12:42:45.1457473Z tardis/transport/montecarlo/base.py:129: in initialize_transport_state
+2025-01-14T12:42:45.1457815Z     ).to_numba(
+2025-01-14T12:42:45.1458046Z tardis/opacities/opacity_state.py:342: in to_numba
+2025-01-14T12:42:45.1458338Z     return OpacityStateNumba(
+2025-01-14T12:42:45.1458817Z ../../../micromamba/envs/tardis/lib/python3.12/site-packages/numba/experimental/jitclass/base.py:124: in __call__
+2025-01-14T12:42:45.1459329Z     return cls._ctor(*bind.args[1:], **bind.kwargs)
+2025-01-14T12:42:45.1459820Z ../../../micromamba/envs/tardis/lib/python3.12/site-packages/numba/core/dispatcher.py:468: in _compile_for_args
+2025-01-14T12:42:45.1460285Z     error_rewrite(e, 'typing')
+2025-01-14T12:42:45.1460545Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2025-01-14T12:42:45.1460739Z 
+2025-01-14T12:42:45.1461396Z e = TypingError('Failed in nopython mode pipeline (step: nopython frontend)\nInternal error at <numba.core.typeinfer.CallC...bug level for details.\n\x1b[1m\nFile "<string>", line 3:\x1b[0m\n\x1b[1m<source missing, REPL/exec in use?>\x1b[0m\n')
+2025-01-14T12:42:45.1462205Z issue_type = 'typing'
+2025-01-14T12:42:45.1462336Z 
+2025-01-14T12:42:45.1462427Z     def error_rewrite(e, issue_type):
+2025-01-14T12:42:45.1462658Z         """
+2025-01-14T12:42:45.1462912Z         Rewrite and raise Exception `e` with help supplied based on the
+2025-01-14T12:42:45.1463239Z         specified issue_type.
+2025-01-14T12:42:45.1463449Z         """
+2025-01-14T12:42:45.1463623Z         if config.SHOW_HELP:
+2025-01-14T12:42:45.1463869Z             help_msg = errors.error_extras[issue_type]
+2025-01-14T12:42:45.1464194Z             e.patch_message('\n'.join((str(e).rstrip(), help_msg)))
+2025-01-14T12:42:45.1464493Z         if config.FULL_TRACEBACKS:
+2025-01-14T12:42:45.1464718Z             raise e
+2025-01-14T12:42:45.1464901Z         else:
+2025-01-14T12:42:45.1465090Z >           raise e.with_traceback(None)
+2025-01-14T12:42:45.1465784Z E           numba.core.errors.TypingError: Failed in nopython mode pipeline (step: nopython frontend)
+2025-01-14T12:42:45.1466367Z E           Internal error at <numba.core.typeinfer.CallConstraint object at 0x7f67ab80f290>.
+2025-01-14T12:42:45.1467287Z E           [1m[1mFailed in nopython mode pipeline (step: native lowering)
+2025-01-14T12:42:45.1467667Z E           [1m[1mCan't index at [1] in [1 x i64]
+2025-01-14T12:42:45.1467939Z E           [1m
+2025-01-14T12:42:45.1468240Z E           File "tardis/opacities/opacity_state.py", line 82:[0m
+2025-01-14T12:42:45.1468577Z E           [1m    def __init__(
+2025-01-14T12:42:45.1468803Z E                   <source elided>
+2025-01-14T12:42:45.1469052Z E                   self.line_list_nu = line_list_nu
+2025-01-14T12:42:45.1469380Z E           [1m        self.tau_sobolev = tau_sobolev
+2025-01-14T12:42:45.1469698Z E           [0m        [1m^[0m[0m
+2025-01-14T12:42:45.1469945Z E           [0m
+2025-01-14T12:42:45.1470516Z E           [0m[1mDuring: lowering "(self).tau_sobolev = tau_sobolev" at /home/runner/work/tardis/tardis/tardis/opacities/opacity_state.py (82)[0m
+2025-01-14T12:42:45.1474037Z E           [0m[1mDuring: resolving callee type: jitclass.OpacityStateNumba#7f67c6cbc560<electron_density:array(float64, 1d, A),t_electrons:array(float64, 1d, A),line_list_nu:array(float64, 1d, A),tau_sobolev:array(float64, 2d, A),transition_probabilities:array(float64, 2d, A),line2macro_level_upper:array(int64, 1d, A),macro_block_references:array(int64, 1d, A),transition_type:array(int64, 1d, A),destination_level_id:array(int64, 1d, A),transition_line_id:array(int64, 1d, A),bf_threshold_list_nu:array(float64, 1d, A),p_fb_deactivation:array(float64, 2d, A),photo_ion_nu_threshold_mins:array(float64, 1d, A),photo_ion_nu_threshold_maxs:array(float64, 1d, A),photo_ion_block_references:array(int64, 1d, A),chi_bf:array(float64, 2d, A),x_sect:array(float64, 1d, A),phot_nus:array(float64, 1d, A),ff_opacity_factor:array(float64, 1d, A),emissivities:array(float64, 2d, A),photo_ion_activation_idx:array(int64, 1d, A),k_packet_idx:int64>[0m
+2025-01-14T12:42:45.1476875Z E           [0m[1mDuring: typing of call at <string> (3)
+2025-01-14T12:42:45.1477164Z E           [0m
+2025-01-14T12:42:45.1477390Z E           Enable logging at debug level for details.
+2025-01-14T12:42:45.1477667Z E           [1m
+2025-01-14T12:42:45.1477894Z E           File "<string>", line 3:[0m
+2025-01-14T12:42:45.1478210Z E           [1m<source missing, REPL/exec in use?>[0m
+2025-01-14T12:42:45.1478401Z 
+2025-01-14T12:42:45.1478676Z ../../../micromamba/envs/tardis/lib/python3.12/site-packages/numba/core/dispatcher.py:409: TypingError
+2025-01-14T12:42:45.1479184Z ----------------------------- Captured stdout call -----------------------------
+2025-01-14T12:42:45.1479671Z [[1mtardis.io.model.parse_density_configuration[0m][[1;33mWARNING[0m]  
+2025-01-14T12:42:45.1480378Z 	Number of density points larger than number of shells. Assuming inner point irrelevant ([1mparse_density_configuration.py[0m:114)
+2025-01-14T12:42:45.1480962Z ------------------------------ Captured log call -------------------------------
+2025-01-14T12:42:45.1481684Z WARNING  tardis.io.model.parse_density_configuration:parse_density_configuration.py:114 Number of density points larger than number of shells. Assuming inner point irrelevant
+2025-01-14T12:42:45.1482407Z __________________________ test_montecarlo_continuum ___________________________
+2025-01-14T12:42:45.1482642Z 
+2025-01-14T12:42:45.1483299Z continuum_config = {'tardis_config_version': 'v1.0', 'supernova': {'luminosity_requested': <Quantity 4.31528298e+42 erg / s>, 'time_explo...': 10.0, 'survival_probability': 0.0, 'enable_biasing': False, 'virtual_packet_logging': False}}, 'config_dirname': ''}
+2025-01-14T12:42:45.1484309Z regression_data = <tardis.tests.fixtures.regression_data.RegressionData object at 0x7f67b9a6a540>
+2025-01-14T12:42:45.1484846Z nlte_atomic_dataset = <Atomic Data UUID=None MD5=None Lines=69056 Levels=26012>
+2025-01-14T12:42:45.1485121Z 
+2025-01-14T12:42:45.1485377Z     @pytest.mark.continuum
+2025-01-14T12:42:45.1485626Z     def test_montecarlo_continuum(
+2025-01-14T12:42:45.1485865Z         continuum_config,
+2025-01-14T12:42:45.1486072Z         regression_data,
+2025-01-14T12:42:45.1486405Z         nlte_atomic_dataset,
+2025-01-14T12:42:45.1486619Z     ):
+2025-01-14T12:42:45.1486834Z         nlte_atomic_dataset = deepcopy(nlte_atomic_dataset)
+2025-01-14T12:42:45.1487163Z         continuum_simulation = Simulation.from_config(
+2025-01-14T12:42:45.1487435Z             continuum_config,
+2025-01-14T12:42:45.1487664Z             atom_data=nlte_atomic_dataset,
+2025-01-14T12:42:45.1487925Z             virtual_packet_logging=False,
+2025-01-14T12:42:45.1488163Z         )
+2025-01-14T12:42:45.1488361Z         # continuum_simulation.run_convergence()
+2025-01-14T12:42:45.1488612Z     
+2025-01-14T12:42:45.1488791Z >       continuum_simulation.run_final()
+2025-01-14T12:42:45.1488957Z 
+2025-01-14T12:42:45.1489105Z tardis/transport/montecarlo/tests/test_continuum.py:23: 
+2025-01-14T12:42:45.1489554Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2025-01-14T12:42:45.1489853Z tardis/simulation/base.py:558: in run_final
+2025-01-14T12:42:45.1490171Z     emitted_luminosity, v_packets_energy_hist = self.iterate(
+2025-01-14T12:42:45.1490494Z tardis/simulation/base.py:462: in iterate
+2025-01-14T12:42:45.1490819Z     transport_state = self.transport.initialize_transport_state(
+2025-01-14T12:42:45.1491244Z tardis/transport/montecarlo/base.py:129: in initialize_transport_state
+2025-01-14T12:42:45.1491587Z     ).to_numba(
+2025-01-14T12:42:45.1491813Z tardis/opacities/opacity_state.py:342: in to_numba
+2025-01-14T12:42:45.1492101Z     return OpacityStateNumba(
+2025-01-14T12:42:45.1492577Z ../../../micromamba/envs/tardis/lib/python3.12/site-packages/numba/experimental/jitclass/base.py:124: in __call__
+2025-01-14T12:42:45.1493093Z     return cls._ctor(*bind.args[1:], **bind.kwargs)
+2025-01-14T12:42:45.1493586Z ../../../micromamba/envs/tardis/lib/python3.12/site-packages/numba/core/dispatcher.py:468: in _compile_for_args
+2025-01-14T12:42:45.1494069Z     error_rewrite(e, 'typing')
+2025-01-14T12:42:45.1494351Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2025-01-14T12:42:45.1494552Z 
+2025-01-14T12:42:45.1495352Z e = TypingError('Failed in nopython mode pipeline (step: nopython frontend)\nInternal error at <numba.core.typeinfer.CallC...bug level for details.\n\x1b[1m\nFile "<string>", line 3:\x1b[0m\n\x1b[1m<source missing, REPL/exec in use?>\x1b[0m\n')
+2025-01-14T12:42:45.1496166Z issue_type = 'typing'
+2025-01-14T12:42:45.1496297Z 
+2025-01-14T12:42:45.1496387Z     def error_rewrite(e, issue_type):
+2025-01-14T12:42:45.1496618Z         """
+2025-01-14T12:42:45.1496866Z         Rewrite and raise Exception `e` with help supplied based on the
+2025-01-14T12:42:45.1497185Z         specified issue_type.
+2025-01-14T12:42:45.1497390Z         """
+2025-01-14T12:42:45.1497561Z         if config.SHOW_HELP:
+2025-01-14T12:42:45.1497801Z             help_msg = errors.error_extras[issue_type]
+2025-01-14T12:42:45.1498125Z             e.patch_message('\n'.join((str(e).rstrip(), help_msg)))
+2025-01-14T12:42:45.1498426Z         if config.FULL_TRACEBACKS:
+2025-01-14T12:42:45.1498659Z             raise e
+2025-01-14T12:42:45.1498837Z         else:
+2025-01-14T12:42:45.1499026Z >           raise e.with_traceback(None)
+2025-01-14T12:42:45.1499435Z E           numba.core.errors.TypingError: Failed in nopython mode pipeline (step: nopython frontend)
+2025-01-14T12:42:45.1499979Z E           Internal error at <numba.core.typeinfer.CallConstraint object at 0x7f67ab80f290>.
+2025-01-14T12:42:45.1500501Z E           [1m[1mFailed in nopython mode pipeline (step: native lowering)
+2025-01-14T12:42:45.1500874Z E           [1m[1mCan't index at [1] in [1 x i64]
+2025-01-14T12:42:45.1501143Z E           [1m
+2025-01-14T12:42:45.1501441Z E           File "tardis/opacities/opacity_state.py", line 82:[0m
+2025-01-14T12:42:45.1501770Z E           [1m    def __init__(
+2025-01-14T12:42:45.1502003Z E                   <source elided>
+2025-01-14T12:42:45.1502254Z E                   self.line_list_nu = line_list_nu
+2025-01-14T12:42:45.1502580Z E           [1m        self.tau_sobolev = tau_sobolev
+2025-01-14T12:42:45.1503001Z E           [0m        [1m^[0m[0m
+2025-01-14T12:42:45.1503250Z E           [0m
+2025-01-14T12:42:45.1503821Z E           [0m[1mDuring: lowering "(self).tau_sobolev = tau_sobolev" at /home/runner/work/tardis/tardis/tardis/opacities/opacity_state.py (82)[0m
+2025-01-14T12:42:45.1507481Z E           [0m[1mDuring: resolving callee type: jitclass.OpacityStateNumba#7f67c6cbc560<electron_density:array(float64, 1d, A),t_electrons:array(float64, 1d, A),line_list_nu:array(float64, 1d, A),tau_sobolev:array(float64, 2d, A),transition_probabilities:array(float64, 2d, A),line2macro_level_upper:array(int64, 1d, A),macro_block_references:array(int64, 1d, A),transition_type:array(int64, 1d, A),destination_level_id:array(int64, 1d, A),transition_line_id:array(int64, 1d, A),bf_threshold_list_nu:array(float64, 1d, A),p_fb_deactivation:array(float64, 2d, A),photo_ion_nu_threshold_mins:array(float64, 1d, A),photo_ion_nu_threshold_maxs:array(float64, 1d, A),photo_ion_block_references:array(int64, 1d, A),chi_bf:array(float64, 2d, A),x_sect:array(float64, 1d, A),phot_nus:array(float64, 1d, A),ff_opacity_factor:array(float64, 1d, A),emissivities:array(float64, 2d, A),photo_ion_activation_idx:array(int64, 1d, A),k_packet_idx:int64>[0m
+2025-01-14T12:42:45.1510261Z E           [0m[1mDuring: typing of call at <string> (3)
+2025-01-14T12:42:45.1510550Z E           [0m
+2025-01-14T12:42:45.1510761Z E           Enable logging at debug level for details.
+2025-01-14T12:42:45.1511037Z E           [1m
+2025-01-14T12:42:45.1511266Z E           File "<string>", line 3:[0m
+2025-01-14T12:42:45.1511593Z E           [1m<source missing, REPL/exec in use?>[0m
+2025-01-14T12:42:45.1511784Z 
+2025-01-14T12:42:45.1512061Z ../../../micromamba/envs/tardis/lib/python3.12/site-packages/numba/core/dispatcher.py:409: TypingError
+2025-01-14T12:42:45.1512579Z ----------------------------- Captured stdout call -----------------------------
+2025-01-14T12:42:45.1513055Z [[1mtardis.io.model.parse_density_configuration[0m][[1;33mWARNING[0m]  
+2025-01-14T12:42:45.1513762Z 	Number of density points larger than number of shells. Assuming inner point irrelevant ([1mparse_density_configuration.py[0m:114)
+2025-01-14T12:42:45.1514343Z ------------------------------ Captured log call -------------------------------
+2025-01-14T12:42:45.1515067Z WARNING  tardis.io.model.parse_density_configuration:parse_density_configuration.py:114 Number of density points larger than number of shells. Assuming inner point irrelevant
+2025-01-14T12:42:45.1516035Z =============================== warnings summary ===============================
+2025-01-14T12:42:45.1516354Z tardis/io/configuration/config_validator.py:6
+2025-01-14T12:42:45.1516655Z tardis/io/configuration/config_validator.py:6
+2025-01-14T12:42:45.1517140Z   /home/runner/work/tardis/tardis/tardis/io/configuration/config_validator.py:6: DeprecationWarning:
+2025-01-14T12:42:45.1517604Z   
+2025-01-14T12:42:45.1518804Z   jsonschema.RefResolver is deprecated as of v4.18.0, in favor of the https://github.com/python-jsonschema/referencing library, which provides more compliant referencing behavior as well as more flexible APIs for customization. A future release will remove RefResolver. Please file a feature request (on referencing) if you are missing an API for the kind of customization you need.
+2025-01-14T12:42:45.1519986Z 
+2025-01-14T12:42:45.1520216Z ../../../micromamba/envs/tardis/lib/python3.12/site-packages/jupyter_client/connect.py:22
+2025-01-14T12:42:45.1520879Z   /home/runner/micromamba/envs/tardis/lib/python3.12/site-packages/jupyter_client/connect.py:22: DeprecationWarning:
+2025-01-14T12:42:45.1521380Z   
+2025-01-14T12:42:45.1521614Z   Jupyter is migrating its paths to use standard platformdirs
+2025-01-14T12:42:45.1521993Z   given by the platformdirs library.  To remove this warning and
+2025-01-14T12:42:45.1522397Z   see the appropriate new directories, set the environment variable
+2025-01-14T12:42:45.1522787Z   `JUPYTER_PLATFORM_DIRS=1` and then run `jupyter --paths`.
+2025-01-14T12:42:45.1523295Z   The use of platformdirs will be the default in `jupyter_core` v6
+2025-01-14T12:42:45.1523527Z 
+2025-01-14T12:42:45.1528061Z tardis/transport/montecarlo/estimators/tests/test_continuum_property_solver.py::test_continuum_estimators
+2025-01-14T12:42:45.1528638Z   <string>:3: NumbaPendingDeprecationWarning:
+2025-01-14T12:42:45.1528914Z   
+2025-01-14T12:42:45.1530097Z   [1m[1mCode using Numba extension API maybe depending on 'old_style' error-capturing, which is deprecated and will be replaced by 'new_style' in a future release. See details at https://numba.readthedocs.io/en/latest/reference/deprecation.html#deprecation-of-old-style-numba-captured-errors
+2025-01-14T12:42:45.1531113Z   Exception origin:
+2025-01-14T12:42:45.1531615Z     File "/home/runner/micromamba/envs/tardis/lib/python3.12/site-packages/llvmlite/ir/instructions.py", line 672, in __init__
+2025-01-14T12:42:45.1532345Z       raise TypeError("Can't index at %r in %s"
+2025-01-14T12:42:45.1532624Z   [0m[0m
+2025-01-14T12:42:45.1532740Z 
+2025-01-14T12:42:45.1532975Z -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+2025-01-14T12:42:45.1533249Z 
+2025-01-14T12:42:45.1533414Z ---------- coverage: platform linux, python 3.12.4-final-0 -----------
+2025-01-14T12:42:45.1533785Z Coverage HTML written to dir coverage_html_report
+2025-01-14T12:42:45.1534085Z Coverage XML written to file coverage.xml
+2025-01-14T12:42:45.1534261Z 
+2025-01-14T12:42:45.1534387Z =========================== short test summary info ============================
+2025-01-14T12:42:45.1535491Z FAILED tardis/transport/montecarlo/estimators/tests/test_continuum_property_solver.py::test_continuum_estimators - numba.core.errors.TypingError: Failed in nopython mode pipeline (step: nopython frontend)
+2025-01-14T12:42:45.1536478Z Internal error at <numba.core.typeinfer.CallConstraint object at 0x7f67ab80f290>.
+2025-01-14T12:42:45.1537001Z [1m[1mFailed in nopython mode pipeline (step: native lowering)
+2025-01-14T12:42:45.1537371Z [1m[1mCan't index at [1] in [1 x i64]
+2025-01-14T12:42:45.1537622Z [1m
+2025-01-14T12:42:45.1537889Z File "tardis/opacities/opacity_state.py", line 82:[0m
+2025-01-14T12:42:45.1538198Z [1m    def __init__(
+2025-01-14T12:42:45.1538397Z         <source elided>
+2025-01-14T12:42:45.1538611Z         self.line_list_nu = line_list_nu
+2025-01-14T12:42:45.1538907Z [1m        self.tau_sobolev = tau_sobolev
+2025-01-14T12:42:45.1539181Z [0m        [1m^[0m[0m
+2025-01-14T12:42:45.1539393Z [0m
+2025-01-14T12:42:45.1539937Z [0m[1mDuring: lowering "(self).tau_sobolev = tau_sobolev" at /home/runner/work/tardis/tardis/tardis/opacities/opacity_state.py (82)[0m
+2025-01-14T12:42:45.1543306Z [0m[1mDuring: resolving callee type: jitclass.OpacityStateNumba#7f67c6cbc560<electron_density:array(float64, 1d, A),t_electrons:array(float64, 1d, A),line_list_nu:array(float64, 1d, A),tau_sobolev:array(float64, 2d, A),transition_probabilities:array(float64, 2d, A),line2macro_level_upper:array(int64, 1d, A),macro_block_references:array(int64, 1d, A),transition_type:array(int64, 1d, A),destination_level_id:array(int64, 1d, A),transition_line_id:array(int64, 1d, A),bf_threshold_list_nu:array(float64, 1d, A),p_fb_deactivation:array(float64, 2d, A),photo_ion_nu_threshold_mins:array(float64, 1d, A),photo_ion_nu_threshold_maxs:array(float64, 1d, A),photo_ion_block_references:array(int64, 1d, A),chi_bf:array(float64, 2d, A),x_sect:array(float64, 1d, A),phot_nus:array(float64, 1d, A),ff_opacity_factor:array(float64, 1d, A),emissivities:array(float64, 2d, A),photo_ion_activation_idx:array(int64, 1d, A),k_packet_idx:int64>[0m
+2025-01-14T12:42:45.1546157Z [0m[1mDuring: typing of call at <string> (3)
+2025-01-14T12:42:45.1546429Z [0m
+2025-01-14T12:42:45.1546618Z Enable logging at debug level for details.
+2025-01-14T12:42:45.1546877Z [1m
+2025-01-14T12:42:45.1547076Z File "<string>", line 3:[0m
+2025-01-14T12:42:45.1547357Z [1m<source missing, REPL/exec in use?>[0m
+2025-01-14T12:42:45.1548074Z FAILED tardis/transport/montecarlo/tests/test_continuum.py::test_montecarlo_continuum - numba.core.errors.TypingError: Failed in nopython mode pipeline (step: nopython frontend)
+2025-01-14T12:42:45.1549054Z Internal error at <numba.core.typeinfer.CallConstraint object at 0x7f67ab80f290>.
+2025-01-14T12:42:45.1549545Z [1m[1mFailed in nopython mode pipeline (step: native lowering)
+2025-01-14T12:42:45.1549895Z [1m[1mCan't index at [1] in [1 x i64]
+2025-01-14T12:42:45.1550136Z [1m
+2025-01-14T12:42:45.1550394Z File "tardis/opacities/opacity_state.py", line 82:[0m
+2025-01-14T12:42:45.1550698Z [1m    def __init__(
+2025-01-14T12:42:45.1550893Z         <source elided>
+2025-01-14T12:42:45.1551104Z         self.line_list_nu = line_list_nu
+2025-01-14T12:42:45.1551397Z [1m        self.tau_sobolev = tau_sobolev
+2025-01-14T12:42:45.1551661Z [0m        [1m^[0m[0m
+2025-01-14T12:42:45.1551867Z [0m
+2025-01-14T12:42:45.1552522Z [0m[1mDuring: lowering "(self).tau_sobolev = tau_sobolev" at /home/runner/work/tardis/tardis/tardis/opacities/opacity_state.py (82)[0m
+2025-01-14T12:42:45.1556050Z [0m[1mDuring: resolving callee type: jitclass.OpacityStateNumba#7f67c6cbc560<electron_density:array(float64, 1d, A),t_electrons:array(float64, 1d, A),line_list_nu:array(float64, 1d, A),tau_sobolev:array(float64, 2d, A),transition_probabilities:array(float64, 2d, A),line2macro_level_upper:array(int64, 1d, A),macro_block_references:array(int64, 1d, A),transition_type:array(int64, 1d, A),destination_level_id:array(int64, 1d, A),transition_line_id:array(int64, 1d, A),bf_threshold_list_nu:array(float64, 1d, A),p_fb_deactivation:array(float64, 2d, A),photo_ion_nu_threshold_mins:array(float64, 1d, A),photo_ion_nu_threshold_maxs:array(float64, 1d, A),photo_ion_block_references:array(int64, 1d, A),chi_bf:array(float64, 2d, A),x_sect:array(float64, 1d, A),phot_nus:array(float64, 1d, A),ff_opacity_factor:array(float64, 1d, A),emissivities:array(float64, 2d, A),photo_ion_activation_idx:array(int64, 1d, A),k_packet_idx:int64>[0m
+2025-01-14T12:42:45.1558655Z [0m[1mDuring: typing of call at <string> (3)
+2025-01-14T12:42:45.1558920Z [0m
+2025-01-14T12:42:45.1559108Z Enable logging at debug level for details.
+2025-01-14T12:42:45.1559368Z [1m
+2025-01-14T12:42:45.1559567Z File "<string>", line 3:[0m
+2025-01-14T12:42:45.1559849Z [1m<source missing, REPL/exec in use?>[0m
+2025-01-14T12:42:45.1560187Z ========== 2 failed, 1794 deselected, 4 warnings in 81.21s (0:01:21) ===========
+2025-01-14T12:42:46.0865596Z ##[error]Process completed with exit code 1.

@@ -1,0 +1,426 @@
+2025-02-11T05:45:29.8937990Z Prepare all required actions
+2025-02-11T05:45:29.8938580Z Getting action download info
+2025-02-11T05:45:30.0422670Z Download action repository 'mamba-org/setup-micromamba@v1' (SHA:4b9113af4fba0e9e1124b252dd6497a419e7396d)
+2025-02-11T05:45:30.6851780Z ##[group]Run ./.github/actions/setup_env
+2025-02-11T05:45:30.6852090Z with:
+2025-02-11T05:45:30.6852240Z   os-label: osx-arm64
+2025-02-11T05:45:30.6852450Z env:
+2025-02-11T05:45:30.6852770Z   CACHE_NUMBER: 0
+2025-02-11T05:45:30.6853280Z   PYTEST_FLAGS: --tardis-regression-data=/Users/runner/work/tardis/tardis/tardis-regression-data --cov=tardis --cov-report=xml --cov-report=html --cov-append
+2025-02-11T05:45:30.6853970Z   CODECOV_TOKEN: 
+2025-02-11T05:45:30.6854110Z ##[endgroup]
+2025-02-11T05:45:30.6890150Z ##[group]Run file_hash=$(cat conda-osx-arm64.lock | shasum -a 256 | cut -d' ' -f1)
+2025-02-11T05:45:30.6891000Z [36;1mfile_hash=$(cat conda-osx-arm64.lock | shasum -a 256 | cut -d' ' -f1)[0m
+2025-02-11T05:45:30.6891630Z [36;1mecho "file_hash=tardis-conda-env-osx-arm64-${file_hash}-v1" >> "${GITHUB_OUTPUT}"[0m
+2025-02-11T05:45:30.6991070Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+2025-02-11T05:45:30.6991320Z env:
+2025-02-11T05:45:30.6991540Z   CACHE_NUMBER: 0
+2025-02-11T05:45:30.6992030Z   PYTEST_FLAGS: --tardis-regression-data=/Users/runner/work/tardis/tardis/tardis-regression-data --cov=tardis --cov-report=xml --cov-report=html --cov-append
+2025-02-11T05:45:30.6992970Z   CODECOV_TOKEN: 
+2025-02-11T05:45:30.6993230Z ##[endgroup]
+2025-02-11T05:45:30.8208150Z ##[group]Run mamba-org/setup-micromamba@v1
+2025-02-11T05:45:30.8208460Z with:
+2025-02-11T05:45:30.8208660Z   environment-file: conda-osx-arm64.lock
+2025-02-11T05:45:30.8209330Z   cache-environment-key: tardis-conda-env-osx-arm64-bf0d0a4d4c847cca72476c6c68c493d56c484aada7e80de0e42c7607fcef5824-v1
+2025-02-11T05:45:30.8210150Z   cache-downloads-key: tardis-conda-env-osx-arm64-bf0d0a4d4c847cca72476c6c68c493d56c484aada7e80de0e42c7607fcef5824-v1
+2025-02-11T05:45:30.8210910Z   environment-name: tardis
+2025-02-11T05:45:30.8211300Z   cache-environment: true
+2025-02-11T05:45:30.8211730Z   cache-downloads: true
+2025-02-11T05:45:30.8212100Z env:
+2025-02-11T05:45:30.8225730Z   CACHE_NUMBER: 0
+2025-02-11T05:45:30.8226220Z   PYTEST_FLAGS: --tardis-regression-data=/Users/runner/work/tardis/tardis/tardis-regression-data --cov=tardis --cov-report=xml --cov-report=html --cov-append
+2025-02-11T05:45:30.8226730Z   CODECOV_TOKEN: 
+2025-02-11T05:45:30.8226860Z ##[endgroup]
+2025-02-11T05:45:31.2387290Z Will download micromamba to /Users/runner/micromamba-bin/micromamba
+2025-02-11T05:45:31.2391030Z ##[group]Install micromamba
+2025-02-11T05:45:32.1519510Z micromamba installed to /Users/runner/micromamba-bin/micromamba
+2025-02-11T05:45:32.1520040Z ##[endgroup]
+2025-02-11T05:45:32.1520520Z Adding conda-forge to condarc channels ...
+2025-02-11T05:45:32.1533880Z ##[group]Initialize micromamba for bash.
+2025-02-11T05:45:32.1543290Z [command]/Users/runner/micromamba-bin/micromamba shell init -s bash -r /Users/runner/micromamba --log-level warning --rc-file /Users/runner/work/_temp/setup-micromamba/.condarc
+2025-02-11T05:45:32.1750950Z Modifying RC file "/Users/runner/.bash_profile"
+2025-02-11T05:45:32.1752160Z Generating config for root prefix [1m"/Users/runner/micromamba"[0m
+2025-02-11T05:45:32.1752710Z Setting mamba executable to: [1m"/Users/runner/micromamba-bin/micromamba"[0m
+2025-02-11T05:45:32.1753460Z Adding (or replacing) the following in your "/Users/runner/.bash_profile" file
+2025-02-11T05:45:32.1753710Z 
+2025-02-11T05:45:32.1753800Z # >>> mamba initialize >>>
+2025-02-11T05:45:32.1754030Z # !! Contents within this block are managed by 'mamba init' !!
+2025-02-11T05:45:32.1754350Z export MAMBA_EXE='/Users/runner/micromamba-bin/micromamba';
+2025-02-11T05:45:32.1754640Z export MAMBA_ROOT_PREFIX='/Users/runner/micromamba';
+2025-02-11T05:45:32.1755060Z __mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+2025-02-11T05:45:32.1755410Z if [ $? -eq 0 ]; then
+2025-02-11T05:45:32.1756030Z     eval "$__mamba_setup"
+2025-02-11T05:45:32.1756190Z else
+2025-02-11T05:45:32.1756400Z     alias micromamba="$MAMBA_EXE"  # Fallback on help from mamba activate
+2025-02-11T05:45:32.1756670Z fi
+2025-02-11T05:45:32.1756800Z unset __mamba_setup
+2025-02-11T05:45:32.1756960Z # <<< mamba initialize <<<
+2025-02-11T05:45:32.1757060Z 
+2025-02-11T05:45:32.1758510Z ##[endgroup]
+2025-02-11T05:45:32.1759200Z ##[group]Restoring downloads from `/Users/runner/micromamba/pkgs` ...
+2025-02-11T05:45:33.8411430Z Received 0 of 310594474 (0.0%), 0.0 MBs/sec
+2025-02-11T05:45:34.8412460Z Received 67108864 of 310594474 (21.6%), 31.9 MBs/sec
+2025-02-11T05:45:35.8412920Z Received 130023424 of 310594474 (41.9%), 41.3 MBs/sec
+2025-02-11T05:45:36.8413150Z Received 201326592 of 310594474 (64.8%), 47.9 MBs/sec
+2025-02-11T05:45:37.8416070Z Received 281018368 of 310594474 (90.5%), 53.5 MBs/sec
+2025-02-11T05:45:38.1978020Z Cache Size: ~296 MB (310594474 B)
+2025-02-11T05:45:38.2037900Z [command]/opt/homebrew/bin/gtar -xf /Users/runner/work/_temp/44e3827e-fc5b-46ae-b76a-e3369b243f5d/cache.tzst -P -C /Users/runner/work/tardis/tardis --delay-directory-restore --use-compress-program unzstd
+2025-02-11T05:45:38.6860340Z Cache restored successfully
+2025-02-11T05:45:38.6901830Z Restored cache with key `tardis-conda-env-osx-arm64-bf0d0a4d4c847cca72476c6c68c493d56c484aada7e80de0e42c7607fcef5824-v1-osx-arm64`
+2025-02-11T05:45:38.6903250Z ##[endgroup]
+2025-02-11T05:45:38.6993690Z ##[group]Restoring environment `tardis` from `/Users/runner/micromamba/envs/tardis` ...
+2025-02-11T05:45:38.8432470Z Received 310594474 of 310594474 (100.0%), 49.3 MBs/sec
+2025-02-11T05:45:40.3281010Z Received 0 of 385513979 (0.0%), 0.0 MBs/sec
+2025-02-11T05:45:41.3283930Z Received 79691776 of 385513979 (20.7%), 38.0 MBs/sec
+2025-02-11T05:45:42.3285250Z Received 146800640 of 385513979 (38.1%), 46.7 MBs/sec
+2025-02-11T05:45:43.3283330Z Received 209715200 of 385513979 (54.4%), 50.0 MBs/sec
+2025-02-11T05:45:44.3284820Z Received 285212672 of 385513979 (74.0%), 54.4 MBs/sec
+2025-02-11T05:45:45.3295380Z Received 369098752 of 385513979 (95.7%), 58.7 MBs/sec
+2025-02-11T05:45:45.8460140Z Cache Size: ~368 MB (385513979 B)
+2025-02-11T05:45:45.8526090Z [command]/opt/homebrew/bin/gtar -xf /Users/runner/work/_temp/042a36fe-6299-415b-81de-ac42fbd3b849/cache.tzst -P -C /Users/runner/work/tardis/tardis --delay-directory-restore --use-compress-program unzstd
+2025-02-11T05:45:46.3314990Z Received 385513979 of 385513979 (100.0%), 52.5 MBs/sec
+2025-02-11T05:45:59.5344070Z Cache restored successfully
+2025-02-11T05:45:59.5380840Z Restored cache with key `tardis-conda-env-osx-arm64-bf0d0a4d4c847cca72476c6c68c493d56c484aada7e80de0e42c7607fcef5824-v1-osx-arm64-tardis-args-4f53cda-root-873f6fe-bin-[object Promise]-file-bf0d0a4d4c847cca72476c6c68c493d56c484aada7e80de0e42c7607fcef5824`
+2025-02-11T05:45:59.5393020Z ##[endgroup]
+2025-02-11T05:45:59.5402770Z Adding environment tardis to auto-activate bash ...
+2025-02-11T05:45:59.5403520Z Generating micromamba run shell.
+2025-02-11T05:45:59.5405120Z ##[endgroup]
+2025-02-11T05:45:59.5406320Z Set environment variables.
+2025-02-11T05:45:59.5411070Z ##[group]micromamba info
+2025-02-11T05:45:59.5413150Z [command]/Users/runner/micromamba-bin/micromamba info -r /Users/runner/micromamba -n tardis
+2025-02-11T05:45:59.9453770Z 
+2025-02-11T05:45:59.9461670Z        libmamba version : 1.5.10
+2025-02-11T05:45:59.9462160Z      micromamba version : 1.5.10
+2025-02-11T05:45:59.9462790Z            curl version : libcurl/8.10.1 (OpenSSL/3.3.2) SecureTransport zlib/1.3.1 zstd/1.5.6 libssh2/1.11.0 nghttp2/1.58.0
+2025-02-11T05:45:59.9463430Z      libarchive version : libarchive 3.7.4 zlib/1.2.13 bz2lib/1.0.8 libzstd/1.5.6
+2025-02-11T05:45:59.9464340Z        envs directories : /Users/runner/micromamba/envs
+2025-02-11T05:45:59.9464850Z           package cache : /Users/runner/micromamba/pkgs
+2025-02-11T05:45:59.9465380Z                           /Users/runner/.mamba/pkgs
+2025-02-11T05:45:59.9466100Z             environment : tardis
+2025-02-11T05:45:59.9466810Z            env location : /Users/runner/micromamba/envs/tardis
+2025-02-11T05:45:59.9468520Z       user config files : /Users/runner/.mambarc
+2025-02-11T05:45:59.9468950Z  populated config files : /Users/runner/work/_temp/setup-micromamba/.condarc
+2025-02-11T05:45:59.9469320Z        virtual packages : __unix=0=0
+2025-02-11T05:45:59.9469630Z                           __osx=14.7.2=0
+2025-02-11T05:45:59.9469890Z                           __archspec=1=arm64
+2025-02-11T05:45:59.9470330Z                channels : https://conda.anaconda.org/conda-forge/osx-arm64
+2025-02-11T05:45:59.9470830Z                           https://conda.anaconda.org/conda-forge/noarch
+2025-02-11T05:45:59.9471220Z        base environment : /Users/runner/micromamba
+2025-02-11T05:45:59.9471510Z                platform : osx-arm64
+2025-02-11T05:45:59.9472430Z ##[endgroup]
+2025-02-11T05:45:59.9472800Z ##[group]micromamba list
+2025-02-11T05:45:59.9473340Z [command]/Users/runner/micromamba-bin/micromamba list -r /Users/runner/micromamba -n tardis
+2025-02-11T05:46:00.4578830Z List of packages in environment: "/Users/runner/micromamba/envs/tardis"
+2025-02-11T05:46:00.4579280Z 
+2025-02-11T05:46:00.4579610Z   Name                           Version              Build                    Channel    
+2025-02-11T05:46:00.4581150Z ────────────────────────────────────────────────────────────────────────────────────────────
+2025-02-11T05:46:00.4581620Z   alabaster                      0.7.16               pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4582130Z   anyio                          4.4.0                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4582500Z   appnope                        0.1.4                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4583120Z   argon2-cffi                    23.1.0               pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4583700Z   argon2-cffi-bindings           21.2.0               py312h02f2b3b_4          conda-forge
+2025-02-11T05:46:00.4584380Z   arrow                          1.3.0                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4584920Z   astropy                        6.1.1                py312hbebd99a_0          conda-forge
+2025-02-11T05:46:00.4585610Z   astropy-iers-data              0.2024.6.17.0.31.35  pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4586320Z   astropy-sphinx-theme           1.1                  pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4586840Z   asttokens                      2.4.1                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4588920Z   async-lru                      2.0.4                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4589440Z   atk-1.0                        2.38.0               hd03087b_2               conda-forge
+2025-02-11T05:46:00.4590030Z   attrs                          23.2.0               pyh71513ae_0             conda-forge
+2025-02-11T05:46:00.4591150Z   babel                          2.14.0               pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4591700Z   beautifulsoup4                 4.12.3               pyha770c72_0             conda-forge
+2025-02-11T05:46:00.4592170Z   bleach                         6.1.0                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4592690Z   blosc                          1.21.5               h9c252e8_1               conda-forge
+2025-02-11T05:46:00.4593080Z   brotli                         1.1.0                hb547adb_1               conda-forge
+2025-02-11T05:46:00.4593650Z   brotli-bin                     1.1.0                hb547adb_1               conda-forge
+2025-02-11T05:46:00.4594260Z   brotli-python                  1.1.0                py312h9f69965_1          conda-forge
+2025-02-11T05:46:00.4594740Z   bzip2                          1.0.8                h93a5062_5               conda-forge
+2025-02-11T05:46:00.4595900Z   c-ares                         1.28.1               h93a5062_0               conda-forge
+2025-02-11T05:46:00.4596310Z   c-blosc2                       2.14.4               ha57e6be_1               conda-forge
+2025-02-11T05:46:00.4597200Z   ca-certificates                2024.6.2             hf0a4a13_0               conda-forge
+2025-02-11T05:46:00.4597610Z   cached-property                1.5.2                hd8ed1ab_1               conda-forge
+2025-02-11T05:46:00.4598150Z   cached_property                1.5.2                pyha770c72_1             conda-forge
+2025-02-11T05:46:00.4598560Z   cairo                          1.18.0               hd1e100b_0               conda-forge
+2025-02-11T05:46:00.4599120Z   certifi                        2024.6.2             pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4599610Z   cffi                           1.16.0               py312h8e38eb3_0          conda-forge
+2025-02-11T05:46:00.4600180Z   charset-normalizer             3.3.2                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4600770Z   click                          8.1.7                unix_pyh707e725_0        conda-forge
+2025-02-11T05:46:00.4601260Z   codespell                      2.3.0                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4601850Z   colorama                       0.4.6                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4602400Z   comm                           0.2.2                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4602870Z   commonmark                     0.9.1                py_0                     conda-forge
+2025-02-11T05:46:00.4603410Z   contourpy                      1.2.1                py312h0fef576_0          conda-forge
+2025-02-11T05:46:00.4603800Z   coverage                       7.5.3                py312h7e5086c_0          conda-forge
+2025-02-11T05:46:00.4604240Z   cycler                         0.12.1               pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4604870Z   dataclasses                    0.8                  pyhc8e2a94_3             conda-forge
+2025-02-11T05:46:00.4605390Z   debugpy                        1.8.1                py312h20a0b95_0          conda-forge
+2025-02-11T05:46:00.4605840Z   decorator                      5.1.1                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4606920Z   defusedxml                     0.7.1                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4607460Z   docutils                       0.20.1               py312h81bd7bf_3          conda-forge
+2025-02-11T05:46:00.4634520Z   dot2tex                        2.11.3               pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4634850Z   entrypoints                    0.4                  pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4635220Z   exceptiongroup                 1.2.0                pyhd8ed1ab_2             conda-forge
+2025-02-11T05:46:00.4635560Z   executing                      2.0.1                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4636420Z   expat                          2.6.2                hebf3989_0               conda-forge
+2025-02-11T05:46:00.4636910Z   font-ttf-dejavu-sans-mono      2.37                 hab24e00_0               conda-forge
+2025-02-11T05:46:00.4637280Z   font-ttf-inconsolata           3.000                h77eed37_0               conda-forge
+2025-02-11T05:46:00.4637730Z   font-ttf-source-code-pro       2.038                h77eed37_0               conda-forge
+2025-02-11T05:46:00.4638240Z   font-ttf-ubuntu                0.83                 h77eed37_2               conda-forge
+2025-02-11T05:46:00.4638630Z   fontconfig                     2.14.2               h82840c6_0               conda-forge
+2025-02-11T05:46:00.4639080Z   fonts-conda-ecosystem          1                    0                        conda-forge
+2025-02-11T05:46:00.4639480Z   fonts-conda-forge              1                    0                        conda-forge
+2025-02-11T05:46:00.4639790Z   fonttools                      4.53.0               py312h7e5086c_0          conda-forge
+2025-02-11T05:46:00.4640170Z   fqdn                           1.5.1                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4640640Z   freetype                       2.12.1               hadb7bae_2               conda-forge
+2025-02-11T05:46:00.4640930Z   fribidi                        1.0.10               h27ca646_0               conda-forge
+2025-02-11T05:46:00.4641210Z   future                         1.0.0                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4641490Z   gdk-pixbuf                     2.42.12              h7ddc832_0               conda-forge
+2025-02-11T05:46:00.4641910Z   gettext                        0.22.5               h8fbad5d_2               conda-forge
+2025-02-11T05:46:00.4642360Z   gettext-tools                  0.22.5               h8fbad5d_2               conda-forge
+2025-02-11T05:46:00.4642810Z   giflib                         5.2.2                h93a5062_0               conda-forge
+2025-02-11T05:46:00.4643150Z   git-lfs                        3.5.1                hce30654_0               conda-forge
+2025-02-11T05:46:00.4643420Z   gmp                            6.3.0                hebf3989_1               conda-forge
+2025-02-11T05:46:00.4643690Z   gmpy2                          2.1.5                py312hfa9fade_1          conda-forge
+2025-02-11T05:46:00.4644030Z   graphite2                      1.3.13               hebf3989_1003            conda-forge
+2025-02-11T05:46:00.4644390Z   graphviz                       11.0.0               h9bb9bc9_0               conda-forge
+2025-02-11T05:46:00.4644770Z   gtk2                           2.24.33              h7895bb2_4               conda-forge
+2025-02-11T05:46:00.4645110Z   gts                            0.7.6                he42f4ea_4               conda-forge
+2025-02-11T05:46:00.4645400Z   h11                            0.14.0               pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4645690Z   h2                             4.1.0                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4645950Z   h5py                           3.11.0               nompi_py312h903599c_102  conda-forge
+2025-02-11T05:46:00.4646320Z   harfbuzz                       8.5.0                h1836168_0               conda-forge
+2025-02-11T05:46:00.4646630Z   hdf5                           1.14.3               nompi_hec07895_105       conda-forge
+2025-02-11T05:46:00.4646990Z   hpack                          4.0.0                pyh9f0ad1d_0             conda-forge
+2025-02-11T05:46:00.4647440Z   httpcore                       1.0.5                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4647870Z   httpx                          0.27.0               pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4648220Z   hyperframe                     6.0.1                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4648580Z   icu                            73.2                 hc8870d7_0               conda-forge
+2025-02-11T05:46:00.4649160Z   idna                           3.7                  pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4649500Z   imagesize                      1.4.1                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4649930Z   importlib-metadata             7.1.0                pyha770c72_0             conda-forge
+2025-02-11T05:46:00.4650410Z   importlib_metadata             7.1.0                hd8ed1ab_0               conda-forge
+2025-02-11T05:46:00.4651840Z   importlib_resources            6.4.0                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4652350Z   iniconfig                      2.0.0                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4652780Z   ipykernel                      6.29.4               pyh57ce528_0             conda-forge
+2025-02-11T05:46:00.4653220Z   ipython                        8.25.0               pyh707e725_0             conda-forge
+2025-02-11T05:46:00.4653720Z   ipython_genutils               0.2.0                pyhd8ed1ab_1             conda-forge
+2025-02-11T05:46:00.4654240Z   ipywidgets                     7.8.0                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4654960Z   isoduration                    20.11.0              pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4655340Z   jedi                           0.19.1               pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4655710Z   jinja2                         3.1.4                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4656080Z   json5                          0.9.25               pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4656450Z   jsonpointer                    3.0.0                py312h81bd7bf_0          conda-forge
+2025-02-11T05:46:00.4656840Z   jsonschema                     4.22.0               pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4657230Z   jsonschema-specifications      2023.12.1            pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4657730Z   jsonschema-with-format-nongpl  4.22.0               pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4658120Z   jupyter-lsp                    2.2.5                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4658520Z   jupyter_client                 8.6.2                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4658870Z   jupyter_core                   5.7.2                py312h81bd7bf_0          conda-forge
+2025-02-11T05:46:00.4659220Z   jupyter_events                 0.10.0               pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4659530Z   jupyter_server                 2.14.1               pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4659860Z   jupyter_server_terminals       0.5.3                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4660290Z   jupyterlab                     4.2.2                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4660660Z   jupyterlab_pygments            0.3.0                pyhd8ed1ab_1             conda-forge
+2025-02-11T05:46:00.4661170Z   jupyterlab_server              2.27.2               pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4661580Z   jupyterlab_widgets             1.1.7                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4662020Z   kiwisolver                     1.4.5                py312h389731b_1          conda-forge
+2025-02-11T05:46:00.4662310Z   krb5                           1.21.2               h92f50d5_0               conda-forge
+2025-02-11T05:46:00.4662580Z   latexcodec                     2.0.1                pyh9f0ad1d_0             conda-forge
+2025-02-11T05:46:00.4662860Z   lcms2                          2.16                 ha0e7c42_0               conda-forge
+2025-02-11T05:46:00.4663210Z   lerc                           4.0.0                h9a09cb3_0               conda-forge
+2025-02-11T05:46:00.4663460Z   libaec                         1.1.3                hebf3989_0               conda-forge
+2025-02-11T05:46:00.4663730Z   libasprintf                    0.22.5               h8fbad5d_2               conda-forge
+2025-02-11T05:46:00.4664190Z   libasprintf-devel              0.22.5               h8fbad5d_2               conda-forge
+2025-02-11T05:46:00.4664490Z   libblas                        3.9.0                22_osxarm64_openblas     conda-forge
+2025-02-11T05:46:00.4664780Z   libbrotlicommon                1.1.0                hb547adb_1               conda-forge
+2025-02-11T05:46:00.4665140Z   libbrotlidec                   1.1.0                hb547adb_1               conda-forge
+2025-02-11T05:46:00.4665460Z   libbrotlienc                   1.1.0                hb547adb_1               conda-forge
+2025-02-11T05:46:00.4665740Z   libcblas                       3.9.0                22_osxarm64_openblas     conda-forge
+2025-02-11T05:46:00.4666020Z   libcurl                        8.8.0                h7b6f9a7_0               conda-forge
+2025-02-11T05:46:00.4666280Z   libcxx                         17.0.6               h5f092b4_0               conda-forge
+2025-02-11T05:46:00.4666550Z   libdeflate                     1.20                 h93a5062_0               conda-forge
+2025-02-11T05:46:00.4667120Z   libedit                        3.1.20191231         hc8eb9b7_2               conda-forge
+2025-02-11T05:46:00.4667540Z   libev                          4.33                 h93a5062_2               conda-forge
+2025-02-11T05:46:00.4667890Z   libexpat                       2.6.2                hebf3989_0               conda-forge
+2025-02-11T05:46:00.4668160Z   libffi                         3.4.2                h3422bc3_5               conda-forge
+2025-02-11T05:46:00.4668460Z   libgd                          2.3.3                hfdf3952_9               conda-forge
+2025-02-11T05:46:00.4668740Z   libgettextpo                   0.22.5               h8fbad5d_2               conda-forge
+2025-02-11T05:46:00.4669060Z   libgettextpo-devel             0.22.5               h8fbad5d_2               conda-forge
+2025-02-11T05:46:00.4669450Z   libgfortran                    5.0.0                13_2_0_hd922786_3        conda-forge
+2025-02-11T05:46:00.4669840Z   libgfortran5                   13.2.0               hf226fd6_3               conda-forge
+2025-02-11T05:46:00.4670180Z   libglib                        2.80.2               h59d46d9_1               conda-forge
+2025-02-11T05:46:00.4670540Z   libiconv                       1.17                 h0d3ecfb_2               conda-forge
+2025-02-11T05:46:00.4670860Z   libintl                        0.22.5               h8fbad5d_2               conda-forge
+2025-02-11T05:46:00.4671220Z   libintl-devel                  0.22.5               h8fbad5d_2               conda-forge
+2025-02-11T05:46:00.4671670Z   libjpeg-turbo                  3.0.0                hb547adb_1               conda-forge
+2025-02-11T05:46:00.4672040Z   liblapack                      3.9.0                22_osxarm64_openblas     conda-forge
+2025-02-11T05:46:00.4672390Z   libllvm14                      14.0.6               hd1a9a77_4               conda-forge
+2025-02-11T05:46:00.4672750Z   libnghttp2                     1.58.0               ha4dd798_1               conda-forge
+2025-02-11T05:46:00.4673170Z   libopenblas                    0.3.27               openmp_h6c19121_0        conda-forge
+2025-02-11T05:46:00.4673480Z   libpng                         1.6.43               h091b4b1_0               conda-forge
+2025-02-11T05:46:00.4673830Z   librsvg                        2.58.1               hbc281fb_0               conda-forge
+2025-02-11T05:46:00.4674160Z   libsodium                      1.0.18               h27ca646_1               conda-forge
+2025-02-11T05:46:00.4674500Z   libsqlite                      3.46.0               hfb93653_0               conda-forge
+2025-02-11T05:46:00.4674810Z   libssh2                        1.11.0               h7a5bd25_0               conda-forge
+2025-02-11T05:46:00.4675180Z   libtiff                        4.6.0                h07db509_3               conda-forge
+2025-02-11T05:46:00.4675530Z   libwebp                        1.4.0                h54798ee_0               conda-forge
+2025-02-11T05:46:00.4676250Z   libwebp-base                   1.4.0                h93a5062_0               conda-forge
+2025-02-11T05:46:00.4676610Z   libxcb                         1.16                 hf2054a2_0               conda-forge
+2025-02-11T05:46:00.4676940Z   libxml2                        2.12.7               ha661575_1               conda-forge
+2025-02-11T05:46:00.4677290Z   libxslt                        1.1.39               h223e5b9_0               conda-forge
+2025-02-11T05:46:00.4677560Z   libzlib                        1.3.1                hfb2fe0b_1               conda-forge
+2025-02-11T05:46:00.4677850Z   llvm-openmp                    18.1.7               hde57baf_0               conda-forge
+2025-02-11T05:46:00.4678210Z   llvmlite                       0.42.0               py312h17030e7_1          conda-forge
+2025-02-11T05:46:00.4678490Z   lxml                           5.2.2                py312h0e5ab22_0          conda-forge
+2025-02-11T05:46:00.4678820Z   lz4-c                          1.9.4                hb7217d7_0               conda-forge
+2025-02-11T05:46:00.4679240Z   markupsafe                     2.1.5                py312he37b823_0          conda-forge
+2025-02-11T05:46:00.4679820Z   matplotlib-base                3.8.4                py312h4479663_2          conda-forge
+2025-02-11T05:46:00.4680150Z   matplotlib-inline              0.1.7                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4680540Z   mistune                        3.0.2                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4680820Z   mpc                            1.3.1                h91ba8db_0               conda-forge
+2025-02-11T05:46:00.4681180Z   mpfr                           4.2.1                h41d338b_1               conda-forge
+2025-02-11T05:46:00.4681500Z   mpmath                         1.3.0                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4681790Z   munkres                        1.1.4                pyh9f0ad1d_0             conda-forge
+2025-02-11T05:46:00.4682100Z   mypy_extensions                1.0.0                pyha770c72_0             conda-forge
+2025-02-11T05:46:00.4682410Z   nbclassic                      1.1.0                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4682740Z   nbclient                       0.10.0               pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4683040Z   nbconvert                      7.16.4               hd8ed1ab_1               conda-forge
+2025-02-11T05:46:00.4683350Z   nbconvert-core                 7.16.4               pyhd8ed1ab_1             conda-forge
+2025-02-11T05:46:00.4683720Z   nbconvert-pandoc               7.16.4               hd8ed1ab_1               conda-forge
+2025-02-11T05:46:00.4684020Z   nbformat                       5.10.4               pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4684310Z   nbsphinx                       0.9.4                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4684580Z   ncurses                        6.5                  hb89a1cb_0               conda-forge
+2025-02-11T05:46:00.4684850Z   nest-asyncio                   1.6.0                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4685130Z   networkx                       3.3                  pyhd8ed1ab_1             conda-forge
+2025-02-11T05:46:00.4685400Z   notebook                       7.2.1                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4685720Z   notebook-shim                  0.2.4                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4686000Z   numba                          0.59.1               py312hbaff935_0          conda-forge
+2025-02-11T05:46:00.4686270Z   numexpr                        2.10.0               py312h8ae5369_0          conda-forge
+2025-02-11T05:46:00.4686530Z   numpy                          1.26.4               py312h8442bc7_0          conda-forge
+2025-02-11T05:46:00.4686800Z   numpydoc                       1.7.0                pyhd8ed1ab_1             conda-forge
+2025-02-11T05:46:00.4687230Z   openjpeg                       2.5.2                h9f1df11_0               conda-forge
+2025-02-11T05:46:00.4687500Z   openssl                        3.3.1                hfb2fe0b_0               conda-forge
+2025-02-11T05:46:00.4687770Z   overrides                      7.7.0                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4688050Z   packaging                      24.1                 pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4688320Z   pandas                         2.2.2                py312h8ae5369_1          conda-forge
+2025-02-11T05:46:00.4688580Z   pandoc                         3.2                  hce30654_0               conda-forge
+2025-02-11T05:46:00.4688890Z   pandocfilters                  1.5.0                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4689170Z   pango                          1.54.0               h5cb9fbc_0               conda-forge
+2025-02-11T05:46:00.4689440Z   parso                          0.8.4                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4689700Z   pathspec                       0.12.1               pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4690070Z   pbr                            6.0.0                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4690320Z   pcre2                          10.44                h297a79d_0               conda-forge
+2025-02-11T05:46:00.4690580Z   pexpect                        4.9.0                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4690860Z   pickleshare                    0.7.5                py_1003                  conda-forge
+2025-02-11T05:46:00.4691140Z   pillow                         10.3.0               py312h39b1d8d_1          conda-forge
+2025-02-11T05:46:00.4691400Z   pip                            24.0                 pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4691660Z   pixman                         0.43.4               hebf3989_0               conda-forge
+2025-02-11T05:46:00.4691960Z   pkgutil-resolve-name           1.3.10               pyhd8ed1ab_1             conda-forge
+2025-02-11T05:46:00.4692270Z   platformdirs                   4.2.2                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4692550Z   plotly                         5.22.0               pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4692820Z   pluggy                         1.5.0                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4693100Z   prometheus_client              0.20.0               pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4693410Z   prompt-toolkit                 3.0.47               pyha770c72_0             conda-forge
+2025-02-11T05:46:00.4693800Z   psutil                         5.9.8                py312he37b823_0          conda-forge
+2025-02-11T05:46:00.4694080Z   pthread-stubs                  0.4                  h27ca646_1001            conda-forge
+2025-02-11T05:46:00.4694410Z   ptyprocess                     0.7.0                pyhd3deb0d_0             conda-forge
+2025-02-11T05:46:00.4694720Z   pure_eval                      0.2.2                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4695010Z   py-cpuinfo                     9.0.0                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4695310Z   pybtex                         0.24.0               pyhd8ed1ab_2             conda-forge
+2025-02-11T05:46:00.4695650Z   pybtex-docutils                1.0.3                py312h81bd7bf_1          conda-forge
+2025-02-11T05:46:00.4695960Z   pycparser                      2.22                 pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4696260Z   pyerfa                         2.0.1.4              py312hbebd99a_1          conda-forge
+2025-02-11T05:46:00.4696560Z   pygments                       2.18.0               pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4696860Z   pygraphviz                     1.13                 py312h5f4d302_1          conda-forge
+2025-02-11T05:46:00.4697320Z   pyobjc-core                    10.3.1               py312hbb55c70_0          conda-forge
+2025-02-11T05:46:00.4697670Z   pyobjc-framework-cocoa         10.3.1               py312hbb55c70_0          conda-forge
+2025-02-11T05:46:00.4698010Z   pyparsing                      3.1.2                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4698310Z   pysocks                        1.7.1                pyha2e5f31_6             conda-forge
+2025-02-11T05:46:00.4698610Z   pytables                       3.9.2                py312hb622ae1_2          conda-forge
+2025-02-11T05:46:00.4698900Z   pytest                         8.2.2                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4699200Z   pytest-cov                     5.0.0                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4699520Z   pytest-doctestplus             1.2.1                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4699860Z   pytest-html                    4.1.1                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4700160Z   pytest-metadata                3.1.1                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4700710Z   python                         3.12.4               h30c5eda_0_cpython       conda-forge
+2025-02-11T05:46:00.4701010Z   python-dateutil                2.9.0                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4701340Z   python-fastjsonschema          2.20.0               pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4701680Z   python-json-logger             2.0.7                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4701990Z   python-tzdata                  2024.1               pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4702290Z   python_abi                     3.12                 4_cp312                  conda-forge
+2025-02-11T05:46:00.4702560Z   pytz                           2024.1               pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4702850Z   pyyaml                         6.0.1                py312h02f2b3b_1          conda-forge
+2025-02-11T05:46:00.4703230Z   pyzmq                          26.0.3               py312hfa13136_0          conda-forge
+2025-02-11T05:46:00.4703510Z   qgrid                          1.3.1                pyhd8ed1ab_4             conda-forge
+2025-02-11T05:46:00.4703820Z   radioactivedecay               0.5.1                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4704140Z   readline                       8.2                  h92ec313_1               conda-forge
+2025-02-11T05:46:00.4704480Z   recommonmark                   0.7.1                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4704820Z   referencing                    0.35.1               pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4705110Z   requests                       2.32.3               pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4705440Z   rfc3339-validator              0.1.4                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4705770Z   rfc3986-validator              0.1.1                pyh9f0ad1d_0             conda-forge
+2025-02-11T05:46:00.4706070Z   rpds-py                        0.18.1               py312h552d48e_0          conda-forge
+2025-02-11T05:46:00.4706340Z   ruff                           0.4.9                py312h3402d49_0          conda-forge
+2025-02-11T05:46:00.4706610Z   scipy                          1.13.1               py312h14ffa8f_0          conda-forge
+2025-02-11T05:46:00.4706890Z   send2trash                     1.8.3                pyh31c8845_0             conda-forge
+2025-02-11T05:46:00.4707190Z   setuptools                     70.0.0               pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4707490Z   setuptools-scm                 8.1.0                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4707790Z   setuptools_scm                 8.1.0                hd8ed1ab_0               conda-forge
+2025-02-11T05:46:00.4708210Z   six                            1.16.0               pyh6c4a22f_0             conda-forge
+2025-02-11T05:46:00.4708500Z   snakeviz                       2.2.0                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4708780Z   snappy                         1.2.0                hd04f947_1               conda-forge
+2025-02-11T05:46:00.4709070Z   sniffio                        1.3.1                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4709390Z   snowballstemmer                2.2.0                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4709840Z   soupsieve                      2.5                  pyhd8ed1ab_1             conda-forge
+2025-02-11T05:46:00.4710140Z   sphinx                         7.3.7                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4710450Z   sphinx-astropy                 1.9.1                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4710780Z   sphinx-automodapi              0.17.0               pyh717bed2_1             conda-forge
+2025-02-11T05:46:00.4711120Z   sphinx-gallery                 0.16.0               pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4711610Z   sphinx-jsonschema              1.19.1               pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4711960Z   sphinx_bootstrap_theme         0.8.1                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4712290Z   sphinx_rtd_theme               2.0.0                pyha770c72_0             conda-forge
+2025-02-11T05:46:00.4712640Z   sphinxcontrib-apidoc           0.3.0                py_1                     conda-forge
+2025-02-11T05:46:00.4713020Z   sphinxcontrib-applehelp        1.0.8                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4713400Z   sphinxcontrib-bibtex           2.6.2                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4713760Z   sphinxcontrib-devhelp          1.0.6                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4714140Z   sphinxcontrib-htmlhelp         2.0.5                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4714500Z   sphinxcontrib-jquery           4.1                  pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4714850Z   sphinxcontrib-jsmath           1.0.1                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4715200Z   sphinxcontrib-qthelp           1.0.7                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4715580Z   sphinxcontrib-serializinghtml  1.1.10               pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4715930Z   stack_data                     0.6.2                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4716230Z   sympy                          1.12.1               pypyh2585a3b_103         conda-forge
+2025-02-11T05:46:00.4716510Z   tabulate                       0.9.0                pyhd8ed1ab_1             conda-forge
+2025-02-11T05:46:00.4716800Z   tenacity                       8.4.1                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4717100Z   terminado                      0.18.1               pyh31c8845_0             conda-forge
+2025-02-11T05:46:00.4717600Z   tinycss2                       1.3.0                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4718020Z   tk                             8.6.13               h5083fa2_1               conda-forge
+2025-02-11T05:46:00.4718560Z   toml                           0.10.2               pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4718950Z   tomli                          2.0.1                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4719340Z   tornado                        6.4.1                py312h7e5086c_0          conda-forge
+2025-02-11T05:46:00.4719640Z   tqdm                           4.66.4               pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4720030Z   traitlets                      5.14.3               pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4720670Z   typed-ast                      1.5.5                py312h02f2b3b_1          conda-forge
+2025-02-11T05:46:00.4721000Z   types-python-dateutil          2.9.0.20240316       pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4726740Z   typing-extensions              4.12.2               hd8ed1ab_0               conda-forge
+2025-02-11T05:46:00.4727090Z   typing_extensions              4.12.2               pyha770c72_0             conda-forge
+2025-02-11T05:46:00.4727380Z   typing_utils                   0.1.0                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4727660Z   tzdata                         2024a                h0c530f3_0               conda-forge
+2025-02-11T05:46:00.4727940Z   uri-template                   1.3.0                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4728230Z   urllib3                        2.2.2                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4728510Z   wcwidth                        0.2.13               pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4728790Z   webcolors                      24.6.0               pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4729220Z   webencodings                   0.5.1                pyhd8ed1ab_2             conda-forge
+2025-02-11T05:46:00.4729530Z   websocket-client               1.8.0                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4729810Z   wheel                          0.43.0               pyhd8ed1ab_1             conda-forge
+2025-02-11T05:46:00.4730100Z   widgetsnbextension             3.6.6                pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4730400Z   xorg-libxau                    1.0.11               hb547adb_0               conda-forge
+2025-02-11T05:46:00.4730680Z   xorg-libxdmcp                  1.1.3                h27ca646_0               conda-forge
+2025-02-11T05:46:00.4730940Z   xz                             5.2.6                h57fd34a_0               conda-forge
+2025-02-11T05:46:00.4731190Z   yaml                           0.2.5                h3422bc3_2               conda-forge
+2025-02-11T05:46:00.4731440Z   zeromq                         4.3.5                hcc0f68c_4               conda-forge
+2025-02-11T05:46:00.4731710Z   zipp                           3.19.2               pyhd8ed1ab_0             conda-forge
+2025-02-11T05:46:00.4731960Z   zlib                           1.3.1                hfb2fe0b_1               conda-forge
+2025-02-11T05:46:00.4732210Z   zlib-ng                        2.0.7                h1a8c8d9_0               conda-forge
+2025-02-11T05:46:00.4732460Z   zstd                           1.5.6                hb46c0d2_0               conda-forge
+2025-02-11T05:46:00.4732860Z ##[endgroup]

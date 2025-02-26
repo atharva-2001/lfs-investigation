@@ -1,0 +1,244 @@
+2025-01-14T13:09:21.4861880Z ##[group]Run pytest tardis --tardis-regression-data=/Users/runner/work/tardis/tardis/tardis-regression-data --cov=tardis --cov-report=xml --cov-report=html --cov-append -m " continuum"
+2025-01-14T13:09:21.4862900Z [36;1mpytest tardis --tardis-regression-data=/Users/runner/work/tardis/tardis/tardis-regression-data --cov=tardis --cov-report=xml --cov-report=html --cov-append -m " continuum"[0m
+2025-01-14T13:09:21.4938660Z shell: /bin/bash -l {0}
+2025-01-14T13:09:21.4938890Z env:
+2025-01-14T13:09:21.4939280Z   CACHE_NUMBER: 0
+2025-01-14T13:09:21.4939830Z   PYTEST_FLAGS: --tardis-regression-data=/Users/runner/work/tardis/tardis/tardis-regression-data --cov=tardis --cov-report=xml --cov-report=html --cov-append
+2025-01-14T13:09:21.4940330Z   CODECOV_TOKEN: 
+2025-01-14T13:09:21.4940500Z   MAMBA_ROOT_PREFIX: /Users/runner/micromamba
+2025-01-14T13:09:21.4940760Z   MAMBA_EXE: /Users/runner/micromamba-bin/micromamba
+2025-01-14T13:09:21.4941050Z   CONDARC: /Users/runner/work/_temp/setup-micromamba/.condarc
+2025-01-14T13:09:21.4941360Z ##[endgroup]
+2025-01-14T13:09:35.5957480Z ============================= test session starts ==============================
+2025-01-14T13:09:35.5959780Z platform darwin -- Python 3.12.4, pytest-8.2.2, pluggy-1.5.0
+2025-01-14T13:09:35.5960670Z rootdir: /Users/runner/work/tardis/tardis
+2025-01-14T13:09:35.6001700Z configfile: pyproject.toml
+2025-01-14T13:09:35.6003100Z plugins: cov-5.0.0, html-4.1.1, metadata-3.1.1, doctestplus-1.2.1, anyio-4.4.0
+2025-01-14T13:09:35.6004160Z collected 1796 items / 1794 deselected / 2 selected
+2025-01-14T13:09:35.6004720Z 
+2025-01-14T13:10:16.3383330Z tardis/transport/montecarlo/estimators/tests/test_continuum_property_solver.py F [ 50%]
+2025-01-14T13:10:16.3486270Z                                                                          [ 50%]
+2025-01-14T13:10:48.2327390Z tardis/transport/montecarlo/tests/test_continuum.py F                    [100%]
+2025-01-14T13:10:48.2328000Z 
+2025-01-14T13:10:48.2339360Z =================================== FAILURES ===================================
+2025-01-14T13:10:48.2339870Z __________________________ test_continuum_estimators ___________________________
+2025-01-14T13:10:48.2340160Z 
+2025-01-14T13:10:48.2340840Z continuum_config = {'tardis_config_version': 'v1.0', 'supernova': {'luminosity_requested': <Quantity 4.31528298e+42 erg / s>, 'time_explo...': 10.0, 'survival_probability': 0.0, 'enable_biasing': False, 'virtual_packet_logging': False}}, 'config_dirname': ''}
+2025-01-14T13:10:48.2341690Z nlte_atomic_dataset = <Atomic Data UUID=None MD5=None Lines=69056 Levels=26012>
+2025-01-14T13:10:48.2341970Z 
+2025-01-14T13:10:48.2342090Z     @pytest.mark.continuum
+2025-01-14T13:10:48.2342360Z     def test_continuum_estimators(
+2025-01-14T13:10:48.2342640Z         continuum_config,
+2025-01-14T13:10:48.2342910Z         nlte_atomic_dataset,
+2025-01-14T13:10:48.2343130Z     ):
+2025-01-14T13:10:48.2343450Z         nlte_atomic_dataset = deepcopy(nlte_atomic_dataset)
+2025-01-14T13:10:48.2343770Z         continuum_simulation = Simulation.from_config(
+2025-01-14T13:10:48.2344180Z             continuum_config,
+2025-01-14T13:10:48.2344480Z             atom_data=nlte_atomic_dataset,
+2025-01-14T13:10:48.2344880Z             virtual_packet_logging=False,
+2025-01-14T13:10:48.2345200Z         )
+2025-01-14T13:10:48.2345520Z         # continuum_simulation.run_convergence()
+2025-01-14T13:10:48.2345840Z         continuum_properties_solver_dilute_bb = (
+2025-01-14T13:10:48.2346260Z             DiluteBlackBodyContinuumPropertiesSolver(
+2025-01-14T13:10:48.2346580Z                 continuum_simulation.plasma.atomic_data
+2025-01-14T13:10:48.2346940Z             )
+2025-01-14T13:10:48.2347170Z         )
+2025-01-14T13:10:48.2347490Z     
+2025-01-14T13:10:48.2347740Z         continuum_properties_dilute_bb = (
+2025-01-14T13:10:48.2348160Z             continuum_properties_solver_dilute_bb.solve(
+2025-01-14T13:10:48.2348510Z                 continuum_simulation.simulation_state.radiation_field_state,
+2025-01-14T13:10:48.2348940Z                 continuum_simulation.plasma.t_electrons,
+2025-01-14T13:10:48.2354660Z             )
+2025-01-14T13:10:48.2354920Z         )
+2025-01-14T13:10:48.2355540Z     
+2025-01-14T13:10:48.2355790Z         continuum_plasma = continuum_simulation.plasma
+2025-01-14T13:10:48.2356140Z     
+2025-01-14T13:10:48.2356350Z         pdt.assert_frame_equal(
+2025-01-14T13:10:48.2356760Z             continuum_properties_dilute_bb.photo_ionization_rate_coefficient,
+2025-01-14T13:10:48.2357150Z             continuum_simulation.plasma.gamma,
+2025-01-14T13:10:48.2357540Z         )
+2025-01-14T13:10:48.2357760Z         stimulated_recomb_rate_coeff = (
+2025-01-14T13:10:48.2358180Z             continuum_properties_dilute_bb.stimulated_recombination_rate_factor
+2025-01-14T13:10:48.2358540Z             * continuum_plasma.phi_ik.loc[
+2025-01-14T13:10:48.2358980Z                 continuum_properties_dilute_bb.stimulated_recombination_rate_factor.index
+2025-01-14T13:10:48.2359330Z             ]
+2025-01-14T13:10:48.2359590Z         )
+2025-01-14T13:10:48.2359780Z         pdt.assert_frame_equal(
+2025-01-14T13:10:48.2360190Z             stimulated_recomb_rate_coeff, continuum_plasma.alpha_stim
+2025-01-14T13:10:48.2360490Z         )
+2025-01-14T13:10:48.2360820Z     
+2025-01-14T13:10:48.2361040Z >       continuum_simulation.run_final()
+2025-01-14T13:10:48.2361260Z 
+2025-01-14T13:10:48.2361540Z tardis/transport/montecarlo/estimators/tests/test_continuum_property_solver.py:54: 
+2025-01-14T13:10:48.2361950Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2025-01-14T13:10:48.2362360Z tardis/simulation/base.py:558: in run_final
+2025-01-14T13:10:48.2362770Z     emitted_luminosity, v_packets_energy_hist = self.iterate(
+2025-01-14T13:10:48.2363130Z tardis/simulation/base.py:462: in iterate
+2025-01-14T13:10:48.2363610Z     transport_state = self.transport.initialize_transport_state(
+2025-01-14T13:10:48.2363960Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2025-01-14T13:10:48.2364690Z 
+2025-01-14T13:10:48.2365000Z self = <tardis.transport.montecarlo.base.MonteCarloTransportSolver object at 0x170ab8380>
+2025-01-14T13:10:48.2365650Z simulation_state = <tardis.model.base.SimulationState object at 0x11e2d6d20>
+2025-01-14T13:10:48.2366150Z opacity_state = <tardis.opacities.opacity_state.OpacityState object at 0x175961ca0>
+2025-01-14T13:10:48.2366710Z macro_atom_state = <tardis.opacities.macro_atom.macroatom_state.MacroAtomState object at 0x1302d8c50>
+2025-01-14T13:10:48.2367160Z plasma = <tardis.plasma.base.BasePlasma object at 0x11e310530>
+2025-01-14T13:10:48.2367580Z no_of_packets = 1000, no_of_virtual_packets = 0, iteration = 0
+2025-01-14T13:10:48.2367810Z 
+2025-01-14T13:10:48.2367880Z     def initialize_transport_state(
+2025-01-14T13:10:48.2368130Z         self,
+2025-01-14T13:10:48.2368320Z         simulation_state,
+2025-01-14T13:10:48.2368570Z         opacity_state,
+2025-01-14T13:10:48.2368840Z         macro_atom_state,
+2025-01-14T13:10:48.2369180Z         plasma,
+2025-01-14T13:10:48.2369390Z         no_of_packets,
+2025-01-14T13:10:48.2369840Z         no_of_virtual_packets=0,
+2025-01-14T13:10:48.2370130Z         iteration=0,
+2025-01-14T13:10:48.2370450Z     ):
+2025-01-14T13:10:48.2370700Z         if not plasma.continuum_interaction_species.empty:
+2025-01-14T13:10:48.2371100Z             gamma_shape = plasma.gamma.shape
+2025-01-14T13:10:48.2371500Z         else:
+2025-01-14T13:10:48.2371710Z             gamma_shape = (0, 0)
+2025-01-14T13:10:48.2372020Z     
+2025-01-14T13:10:48.2372310Z         packet_collection = self.packet_source.create_packets(
+2025-01-14T13:10:48.2372730Z             no_of_packets, seed_offset=iteration
+2025-01-14T13:10:48.2373040Z         )
+2025-01-14T13:10:48.2373300Z     
+2025-01-14T13:10:48.2373520Z         geometry_state = simulation_state.geometry.to_numba()
+2025-01-14T13:10:48.2373970Z         if hasattr(plasma, "photo_ion_cross_sections"):
+2025-01-14T13:10:48.2374350Z             continuum_state = ContinuumState.from_legacy_plasma(plasma)
+2025-01-14T13:10:48.2374800Z         else:
+2025-01-14T13:10:48.2375360Z             continuum_state = None
+2025-01-14T13:10:48.2375730Z         self.opacity_state_numba = OpacityState(
+2025-01-14T13:10:48.2376020Z             electron_density=plasma.electron_densities,
+2025-01-14T13:10:48.2376420Z             t_electrons=plasma.t_electrons,
+2025-01-14T13:10:48.2376860Z             line_list_nu=plasma.atomic_data.lines.nu,
+2025-01-14T13:10:48.2377190Z             tau_sobolev=opacity_state.tau_sobolev,
+2025-01-14T13:10:48.2377510Z             beta_sobolev=plasma.beta_sobolev,
+2025-01-14T13:10:48.2377850Z             continuum_state=continuum_state,
+2025-01-14T13:10:48.2378080Z         ).to_numba(
+2025-01-14T13:10:48.2378330Z             macro_atom_state,
+2025-01-14T13:10:48.2379390Z             self.line_interaction_type,
+2025-01-14T13:10:48.2379910Z         )
+2025-01-14T13:10:48.2380170Z >       opacity_state_numba = opacity_state_numba[
+2025-01-14T13:10:48.2380730Z             simulation_state.geometry.v_inner_boundary_index : simulation_state.geometry.v_outer_boundary_index
+2025-01-14T13:10:48.2381190Z         ]
+2025-01-14T13:10:48.2381730Z E       UnboundLocalError: cannot access local variable 'opacity_state_numba' where it is not associated with a value
+2025-01-14T13:10:48.2382190Z 
+2025-01-14T13:10:48.2382400Z tardis/transport/montecarlo/base.py:133: UnboundLocalError
+2025-01-14T13:10:48.2382790Z ----------------------------- Captured stdout call -----------------------------
+2025-01-14T13:10:48.2385120Z [[1mtardis.io.model.parse_density_configuration[0m][[1;33mWARNING[0m]  
+2025-01-14T13:10:48.2385780Z 	Number of density points larger than number of shells. Assuming inner point irrelevant ([1mparse_density_configuration.py[0m:114)
+2025-01-14T13:10:48.2386440Z ----------------------------- Captured stderr call -----------------------------
+2025-01-14T13:10:48.2386870Z OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.
+2025-01-14T13:10:48.2387360Z ------------------------------ Captured log call -------------------------------
+2025-01-14T13:10:48.2388340Z WARNING  tardis.io.model.parse_density_configuration:parse_density_configuration.py:114 Number of density points larger than number of shells. Assuming inner point irrelevant
+2025-01-14T13:10:48.2389110Z __________________________ test_montecarlo_continuum ___________________________
+2025-01-14T13:10:48.2389410Z 
+2025-01-14T13:10:48.2389920Z continuum_config = {'tardis_config_version': 'v1.0', 'supernova': {'luminosity_requested': <Quantity 4.31528298e+42 erg / s>, 'time_explo...': 10.0, 'survival_probability': 0.0, 'enable_biasing': False, 'virtual_packet_logging': False}}, 'config_dirname': ''}
+2025-01-14T13:10:48.2390930Z regression_data = <tardis.tests.fixtures.regression_data.RegressionData object at 0x175be6300>
+2025-01-14T13:10:48.2391520Z nlte_atomic_dataset = <Atomic Data UUID=None MD5=None Lines=69056 Levels=26012>
+2025-01-14T13:10:48.2391740Z 
+2025-01-14T13:10:48.2391900Z     @pytest.mark.continuum
+2025-01-14T13:10:48.2392270Z     def test_montecarlo_continuum(
+2025-01-14T13:10:48.2392560Z         continuum_config,
+2025-01-14T13:10:48.2392840Z         regression_data,
+2025-01-14T13:10:48.2393090Z         nlte_atomic_dataset,
+2025-01-14T13:10:48.2393460Z     ):
+2025-01-14T13:10:48.2393730Z         nlte_atomic_dataset = deepcopy(nlte_atomic_dataset)
+2025-01-14T13:10:48.2394190Z         continuum_simulation = Simulation.from_config(
+2025-01-14T13:10:48.2394530Z             continuum_config,
+2025-01-14T13:10:48.2394870Z             atom_data=nlte_atomic_dataset,
+2025-01-14T13:10:48.2395110Z             virtual_packet_logging=False,
+2025-01-14T13:10:48.2395450Z         )
+2025-01-14T13:10:48.2395670Z         # continuum_simulation.run_convergence()
+2025-01-14T13:10:48.2395990Z     
+2025-01-14T13:10:48.2396210Z >       continuum_simulation.run_final()
+2025-01-14T13:10:48.2396450Z 
+2025-01-14T13:10:48.2396640Z tardis/transport/montecarlo/tests/test_continuum.py:23: 
+2025-01-14T13:10:48.2397060Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2025-01-14T13:10:48.2397940Z tardis/simulation/base.py:558: in run_final
+2025-01-14T13:10:48.2398260Z     emitted_luminosity, v_packets_energy_hist = self.iterate(
+2025-01-14T13:10:48.2398660Z tardis/simulation/base.py:462: in iterate
+2025-01-14T13:10:48.2398990Z     transport_state = self.transport.initialize_transport_state(
+2025-01-14T13:10:48.2399400Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2025-01-14T13:10:48.2399670Z 
+2025-01-14T13:10:48.2399930Z self = <tardis.transport.montecarlo.base.MonteCarloTransportSolver object at 0x168fc3aa0>
+2025-01-14T13:10:48.2400430Z simulation_state = <tardis.model.base.SimulationState object at 0x13797c200>
+2025-01-14T13:10:48.2401090Z opacity_state = <tardis.opacities.opacity_state.OpacityState object at 0x168fc13d0>
+2025-01-14T13:10:48.2401630Z macro_atom_state = <tardis.opacities.macro_atom.macroatom_state.MacroAtomState object at 0x168fc1460>
+2025-01-14T13:10:48.2402150Z plasma = <tardis.plasma.base.BasePlasma object at 0x1367ed700>
+2025-01-14T13:10:48.2402510Z no_of_packets = 1000, no_of_virtual_packets = 0, iteration = 0
+2025-01-14T13:10:48.2402760Z 
+2025-01-14T13:10:48.2402920Z     def initialize_transport_state(
+2025-01-14T13:10:48.2403150Z         self,
+2025-01-14T13:10:48.2403400Z         simulation_state,
+2025-01-14T13:10:48.2403630Z         opacity_state,
+2025-01-14T13:10:48.2403950Z         macro_atom_state,
+2025-01-14T13:10:48.2404160Z         plasma,
+2025-01-14T13:10:48.2404470Z         no_of_packets,
+2025-01-14T13:10:48.2404710Z         no_of_virtual_packets=0,
+2025-01-14T13:10:48.2404970Z         iteration=0,
+2025-01-14T13:10:48.2405150Z     ):
+2025-01-14T13:10:48.2405470Z         if not plasma.continuum_interaction_species.empty:
+2025-01-14T13:10:48.2405840Z             gamma_shape = plasma.gamma.shape
+2025-01-14T13:10:48.2406130Z         else:
+2025-01-14T13:10:48.2406340Z             gamma_shape = (0, 0)
+2025-01-14T13:10:48.2406700Z     
+2025-01-14T13:10:48.2407180Z         packet_collection = self.packet_source.create_packets(
+2025-01-14T13:10:48.2407560Z             no_of_packets, seed_offset=iteration
+2025-01-14T13:10:48.2407840Z         )
+2025-01-14T13:10:48.2408080Z     
+2025-01-14T13:10:48.2408360Z         geometry_state = simulation_state.geometry.to_numba()
+2025-01-14T13:10:48.2408800Z         if hasattr(plasma, "photo_ion_cross_sections"):
+2025-01-14T13:10:48.2409170Z             continuum_state = ContinuumState.from_legacy_plasma(plasma)
+2025-01-14T13:10:48.2409560Z         else:
+2025-01-14T13:10:48.2409800Z             continuum_state = None
+2025-01-14T13:10:48.2410060Z         self.opacity_state_numba = OpacityState(
+2025-01-14T13:10:48.2410390Z             electron_density=plasma.electron_densities,
+2025-01-14T13:10:48.2410650Z             t_electrons=plasma.t_electrons,
+2025-01-14T13:10:48.2410970Z             line_list_nu=plasma.atomic_data.lines.nu,
+2025-01-14T13:10:48.2411270Z             tau_sobolev=opacity_state.tau_sobolev,
+2025-01-14T13:10:48.2411640Z             beta_sobolev=plasma.beta_sobolev,
+2025-01-14T13:10:48.2411910Z             continuum_state=continuum_state,
+2025-01-14T13:10:48.2412200Z         ).to_numba(
+2025-01-14T13:10:48.2412420Z             macro_atom_state,
+2025-01-14T13:10:48.2412730Z             self.line_interaction_type,
+2025-01-14T13:10:48.2412950Z         )
+2025-01-14T13:10:48.2413180Z >       opacity_state_numba = opacity_state_numba[
+2025-01-14T13:10:48.2413600Z             simulation_state.geometry.v_inner_boundary_index : simulation_state.geometry.v_outer_boundary_index
+2025-01-14T13:10:48.2414010Z         ]
+2025-01-14T13:10:48.2414360Z E       UnboundLocalError: cannot access local variable 'opacity_state_numba' where it is not associated with a value
+2025-01-14T13:10:48.2414730Z 
+2025-01-14T13:10:48.2414890Z tardis/transport/montecarlo/base.py:133: UnboundLocalError
+2025-01-14T13:10:48.2415280Z ----------------------------- Captured stdout call -----------------------------
+2025-01-14T13:10:48.2415900Z [[1mtardis.io.model.parse_density_configuration[0m][[1;33mWARNING[0m]  
+2025-01-14T13:10:48.2416820Z 	Number of density points larger than number of shells. Assuming inner point irrelevant ([1mparse_density_configuration.py[0m:114)
+2025-01-14T13:10:48.2417420Z ------------------------------ Captured log call -------------------------------
+2025-01-14T13:10:48.2418100Z WARNING  tardis.io.model.parse_density_configuration:parse_density_configuration.py:114 Number of density points larger than number of shells. Assuming inner point irrelevant
+2025-01-14T13:10:48.2418720Z =============================== warnings summary ===============================
+2025-01-14T13:10:48.2419120Z tardis/io/configuration/config_validator.py:6
+2025-01-14T13:10:48.2419610Z tardis/io/configuration/config_validator.py:6
+2025-01-14T13:10:48.2420130Z   /Users/runner/work/tardis/tardis/tardis/io/configuration/config_validator.py:6: DeprecationWarning:
+2025-01-14T13:10:48.2421090Z   
+2025-01-14T13:10:48.2422360Z   jsonschema.RefResolver is deprecated as of v4.18.0, in favor of the https://github.com/python-jsonschema/referencing library, which provides more compliant referencing behavior as well as more flexible APIs for customization. A future release will remove RefResolver. Please file a feature request (on referencing) if you are missing an API for the kind of customization you need.
+2025-01-14T13:10:48.2423390Z 
+2025-01-14T13:10:48.2423570Z ../../../micromamba/envs/tardis/lib/python3.12/site-packages/jupyter_client/connect.py:22
+2025-01-14T13:10:48.2424210Z   /Users/runner/micromamba/envs/tardis/lib/python3.12/site-packages/jupyter_client/connect.py:22: DeprecationWarning:
+2025-01-14T13:10:48.2425010Z   
+2025-01-14T13:10:48.2425270Z   Jupyter is migrating its paths to use standard platformdirs
+2025-01-14T13:10:48.2425720Z   given by the platformdirs library.  To remove this warning and
+2025-01-14T13:10:48.2426140Z   see the appropriate new directories, set the environment variable
+2025-01-14T13:10:48.2426600Z   `JUPYTER_PLATFORM_DIRS=1` and then run `jupyter --paths`.
+2025-01-14T13:10:48.2427240Z   The use of platformdirs will be the default in `jupyter_core` v6
+2025-01-14T13:10:48.2427550Z 
+2025-01-14T13:10:48.2427770Z -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+2025-01-14T13:10:48.2428070Z 
+2025-01-14T13:10:48.2428210Z ---------- coverage: platform darwin, python 3.12.4-final-0 ----------
+2025-01-14T13:10:48.2463510Z Coverage HTML written to dir coverage_html_report
+2025-01-14T13:10:48.2463930Z Coverage XML written to file coverage.xml
+2025-01-14T13:10:48.2464080Z 
+2025-01-14T13:10:48.2464180Z =========================== short test summary info ============================
+2025-01-14T13:10:48.2471930Z FAILED tardis/transport/montecarlo/estimators/tests/test_continuum_property_solver.py::test_continuum_estimators - UnboundLocalError: cannot access local variable 'opacity_state_numba' where it is not associated with a value
+2025-01-14T13:10:48.2473170Z FAILED tardis/transport/montecarlo/tests/test_continuum.py::test_montecarlo_continuum - UnboundLocalError: cannot access local variable 'opacity_state_numba' where it is not associated with a value
+2025-01-14T13:10:48.2473910Z ========== 2 failed, 1794 deselected, 3 warnings in 74.23s (0:01:14) ===========
+2025-01-14T13:10:49.3719070Z ##[error]Process completed with exit code 1.

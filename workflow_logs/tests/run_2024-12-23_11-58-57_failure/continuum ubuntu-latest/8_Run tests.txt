@@ -1,0 +1,549 @@
+2025-01-06T15:26:06.0893481Z ##[group]Run pytest tardis --tardis-regression-data=/home/runner/work/tardis/tardis/tardis-regression-data --cov=tardis --cov-report=xml --cov-report=html --cov-append -m " continuum"
+2025-01-06T15:26:06.0895064Z [36;1mpytest tardis --tardis-regression-data=/home/runner/work/tardis/tardis/tardis-regression-data --cov=tardis --cov-report=xml --cov-report=html --cov-append -m " continuum"[0m
+2025-01-06T15:26:06.0921817Z shell: /usr/bin/bash -l {0}
+2025-01-06T15:26:06.0922058Z env:
+2025-01-06T15:26:06.0922229Z   CACHE_NUMBER: 0
+2025-01-06T15:26:06.0922848Z   PYTEST_FLAGS: --tardis-regression-data=/home/runner/work/tardis/tardis/tardis-regression-data --cov=tardis --cov-report=xml --cov-report=html --cov-append
+2025-01-06T15:26:06.0923528Z   CODECOV_TOKEN: 
+2025-01-06T15:26:06.0923749Z   MAMBA_ROOT_PREFIX: /home/runner/micromamba
+2025-01-06T15:26:06.0924212Z   MAMBA_EXE: /home/runner/micromamba-bin/micromamba
+2025-01-06T15:26:06.0924562Z   CONDARC: /home/runner/work/_temp/setup-micromamba/.condarc
+2025-01-06T15:26:06.0924907Z ##[endgroup]
+2025-01-06T15:26:14.6293435Z ============================= test session starts ==============================
+2025-01-06T15:26:14.6294379Z platform linux -- Python 3.12.4, pytest-8.2.2, pluggy-1.5.0
+2025-01-06T15:26:14.6294949Z rootdir: /home/runner/work/tardis/tardis
+2025-01-06T15:26:14.6295439Z configfile: pyproject.toml
+2025-01-06T15:26:14.6296040Z plugins: anyio-4.4.0, doctestplus-1.2.1, cov-5.0.0, html-4.1.1, metadata-3.1.1
+2025-01-06T15:26:14.6296743Z collected 1796 items / 1794 deselected / 2 selected
+2025-01-06T15:26:14.6297073Z 
+2025-01-06T15:26:28.6817682Z tardis/transport/montecarlo/estimators/tests/test_continuum_property_solver.py F [ 50%]
+2025-01-06T15:26:28.6819949Z                                                                          [ 50%]
+2025-01-06T15:26:36.3945450Z tardis/transport/montecarlo/tests/test_continuum.py F                    [100%]
+2025-01-06T15:26:36.3947084Z 
+2025-01-06T15:26:36.3947720Z =================================== FAILURES ===================================
+2025-01-06T15:26:36.3948453Z __________________________ test_continuum_estimators ___________________________
+2025-01-06T15:26:36.3948900Z 
+2025-01-06T15:26:36.3950143Z continuum_config = {'tardis_config_version': 'v1.0', 'supernova': {'luminosity_requested': <Quantity 4.31528298e+42 erg / s>, 'time_explo...': 10.0, 'survival_probability': 0.0, 'enable_biasing': False, 'virtual_packet_logging': False}}, 'config_dirname': ''}
+2025-01-06T15:26:36.3952013Z nlte_atomic_dataset = <Atomic Data UUID=None MD5=None Lines=69056 Levels=26012>
+2025-01-06T15:26:36.3952941Z 
+2025-01-06T15:26:36.3953108Z     @pytest.mark.continuum
+2025-01-06T15:26:36.3953535Z     def test_continuum_estimators(
+2025-01-06T15:26:36.3954179Z         continuum_config,
+2025-01-06T15:26:36.3954591Z         nlte_atomic_dataset,
+2025-01-06T15:26:36.3954991Z     ):
+2025-01-06T15:26:36.3955385Z         nlte_atomic_dataset = deepcopy(nlte_atomic_dataset)
+2025-01-06T15:26:36.3955990Z >       continuum_simulation = Simulation.from_config(
+2025-01-06T15:26:36.3956514Z             continuum_config,
+2025-01-06T15:26:36.3956953Z             atom_data=nlte_atomic_dataset,
+2025-01-06T15:26:36.3957451Z             virtual_packet_logging=False,
+2025-01-06T15:26:36.3957896Z         )
+2025-01-06T15:26:36.3958068Z 
+2025-01-06T15:26:36.3958530Z tardis/transport/montecarlo/estimators/tests/test_continuum_property_solver.py:19: 
+2025-01-06T15:26:36.3959313Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2025-01-06T15:26:36.3959849Z tardis/simulation/base.py:769: in from_config
+2025-01-06T15:26:36.3960364Z     plasma = assemble_plasma(
+2025-01-06T15:26:36.3960946Z tardis/plasma/assembly/legacy_assembly.py:37: in assemble_plasma
+2025-01-06T15:26:36.3961667Z     return plasma_solver_factory.assemble(
+2025-01-06T15:26:36.3962182Z tardis/plasma/assembly/base.py:614: in assemble
+2025-01-06T15:26:36.3962662Z     return BasePlasma(
+2025-01-06T15:26:36.3963020Z tardis/io/util.py:195: in __new__
+2025-01-06T15:26:36.3963817Z     instance.__init__(*args, **kwargs)
+2025-01-06T15:26:36.3964467Z tardis/plasma/base.py:40: in __init__
+2025-01-06T15:26:36.3964876Z     self.update(**kwargs)
+2025-01-06T15:26:36.3965239Z tardis/plasma/base.py:192: in update
+2025-01-06T15:26:36.3965716Z     self.plasma_properties_dict[module_name].update()
+2025-01-06T15:26:36.3966233Z tardis/plasma/properties/base.py:110: in update
+2025-01-06T15:26:36.3966736Z     self.calculate(*self._get_input_values()),
+2025-01-06T15:26:36.3967405Z tardis/plasma/properties/continuum_processes/rates.py:231: in calculate
+2025-01-06T15:26:36.3968115Z     alpha_sp_E = cumulative_integrate_array_by_blocks(
+2025-01-06T15:26:36.3968964Z ../../../micromamba/envs/tardis/lib/python3.12/site-packages/numba/core/dispatcher.py:468: in _compile_for_args
+2025-01-06T15:26:36.3969732Z     error_rewrite(e, 'typing')
+2025-01-06T15:26:36.3970177Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2025-01-06T15:26:36.3970516Z 
+2025-01-06T15:26:36.3971569Z e = TypingError('Failed in nopython mode pipeline (step: nopython frontend)\n\x1b[1m\x1b[1m\x1b[1m\x1b[1mFailed in nopytho...[1m            integrated[start:stop, col] = numba_cumulative_trapezoid(\n\x1b[0m            \x1b[1m^\x1b[0m\x1b[0m\n')
+2025-01-06T15:26:36.3972935Z issue_type = 'typing'
+2025-01-06T15:26:36.3973145Z 
+2025-01-06T15:26:36.3973290Z     def error_rewrite(e, issue_type):
+2025-01-06T15:26:36.3973678Z         """
+2025-01-06T15:26:36.3974278Z         Rewrite and raise Exception `e` with help supplied based on the
+2025-01-06T15:26:36.3974810Z         specified issue_type.
+2025-01-06T15:26:36.3975187Z         """
+2025-01-06T15:26:36.3975458Z         if config.SHOW_HELP:
+2025-01-06T15:26:36.3975885Z             help_msg = errors.error_extras[issue_type]
+2025-01-06T15:26:36.3976452Z             e.patch_message('\n'.join((str(e).rstrip(), help_msg)))
+2025-01-06T15:26:36.3976966Z         if config.FULL_TRACEBACKS:
+2025-01-06T15:26:36.3977349Z             raise e
+2025-01-06T15:26:36.3977624Z         else:
+2025-01-06T15:26:36.3977929Z >           raise e.with_traceback(None)
+2025-01-06T15:26:36.3978597Z E           numba.core.errors.TypingError: Failed in nopython mode pipeline (step: nopython frontend)
+2025-01-06T15:26:36.3979708Z E           [1m[1m[1m[1mFailed in nopython mode pipeline (step: nopython frontend)
+2025-01-06T15:26:36.3980662Z E           [1m[1m[1mNo implementation of function Function(<built-in function concatenate>) found for signature:
+2025-01-06T15:26:36.3981316Z E            
+2025-01-06T15:26:36.3981700Z E            >>> concatenate(Tuple(list(int64)<iv=[0]>, array(float64, 1d, C)))
+2025-01-06T15:26:36.3982409Z E            
+2025-01-06T15:26:36.3982722Z E           There are 2 candidate implementations:
+2025-01-06T15:26:36.3983247Z E           [1m  - Of which 1 did not match due to:
+2025-01-06T15:26:36.3983847Z E             Overload in function 'impl_np_concatenate': File: numba/np/arrayobj.py: Line 5873.
+2025-01-06T15:26:36.3984902Z E               With argument(s): '(Tuple(list(int64)<iv=None>, array(float64, 1d, C)))':[0m
+2025-01-06T15:26:36.3985628Z E           [1m   Rejected as the implementation raised a specific error:
+2025-01-06T15:26:36.3986309Z E                TypingError: Failed in nopython mode pipeline (step: nopython frontend)
+2025-01-06T15:26:36.3987270Z E              [1m[1m[1mNo implementation of function Function(<intrinsic np_concatenate>) found for signature:
+2025-01-06T15:26:36.3987900Z E               
+2025-01-06T15:26:36.3988386Z E               >>> np_concatenate(Tuple(list(int64)<iv=None>, array(float64, 1d, C)), Literal[int](0))
+2025-01-06T15:26:36.3988940Z E               
+2025-01-06T15:26:36.3989246Z E              There are 2 candidate implementations:
+2025-01-06T15:26:36.3989774Z E              [1m      - Of which 2 did not match due to:
+2025-01-06T15:26:36.3990385Z E                    Intrinsic in function 'np_concatenate': File: numba/np/arrayobj.py: Line 5856.
+2025-01-06T15:26:36.3991266Z E                      With argument(s): '(Tuple(list(int64)<iv=None>, array(float64, 1d, C)), int64)':[0m
+2025-01-06T15:26:36.3992253Z E              [1m       Rejected as the implementation raised a specific error:
+2025-01-06T15:26:36.3993314Z E                       TypeError: np.concatenate(): expecting a non-empty tuple of arrays, got Tuple(list(int64)<iv=None>, array(float64, 1d, C))[0m
+2025-01-06T15:26:36.3994701Z E                raised from /home/runner/micromamba/envs/tardis/lib/python3.12/site-packages/numba/core/typing/npydecl.py:526
+2025-01-06T15:26:36.3995526Z E              [0m
+2025-01-06T15:26:36.3996107Z E              [0m[1mDuring: resolving callee type: Function(<intrinsic np_concatenate>)[0m
+2025-01-06T15:26:36.3997267Z E              [0m[1mDuring: typing of call at /home/runner/micromamba/envs/tardis/lib/python3.12/site-packages/numba/np/arrayobj.py (5877)
+2025-01-06T15:26:36.3998127Z E              [0m
+2025-01-06T15:26:36.3998427Z E              [1m
+2025-01-06T15:26:36.3999147Z E              File "../../../micromamba/envs/tardis/lib/python3.12/site-packages/numba/np/arrayobj.py", line 5877:[0m
+2025-01-06T15:26:36.3999935Z E              [1m        def impl(arrays, axis=0):
+2025-01-06T15:26:36.4000453Z E              [1m            return np_concatenate(arrays, axis)
+2025-01-06T15:26:36.4000933Z E              [0m            [1m^[0m[0m
+2025-01-06T15:26:36.4001315Z E           [0m
+2025-01-06T15:26:36.4001956Z E             raised from /home/runner/micromamba/envs/tardis/lib/python3.12/site-packages/numba/core/typeinfer.py:1091
+2025-01-06T15:26:36.4002814Z E           [1m  - Of which 1 did not match due to:
+2025-01-06T15:26:36.4003449Z E             Overload in function 'impl_np_concatenate': File: numba/np/arrayobj.py: Line 5873.
+2025-01-06T15:26:36.4004476Z E               With argument(s): '(Tuple(list(int64)<iv=[0]>, array(float64, 1d, C)))':[0m
+2025-01-06T15:26:36.4005203Z E           [1m   Rejected as the implementation raised a specific error:
+2025-01-06T15:26:36.4005850Z E                TypingError: Failed in nopython mode pipeline (step: nopython frontend)
+2025-01-06T15:26:36.4006883Z E              [1m[1m[1mNo implementation of function Function(<intrinsic np_concatenate>) found for signature:
+2025-01-06T15:26:36.4007524Z E               
+2025-01-06T15:26:36.4007996Z E               >>> np_concatenate(Tuple(list(int64)<iv=[0]>, array(float64, 1d, C)), Literal[int](0))
+2025-01-06T15:26:36.4008566Z E               
+2025-01-06T15:26:36.4008879Z E              There are 2 candidate implementations:
+2025-01-06T15:26:36.4009396Z E              [1m      - Of which 1 did not match due to:
+2025-01-06T15:26:36.4010207Z E                    Intrinsic in function 'np_concatenate': File: numba/np/arrayobj.py: Line 5856.
+2025-01-06T15:26:36.4011109Z E                      With argument(s): '(Tuple(list(int64)<iv=None>, array(float64, 1d, C)), int64)':[0m
+2025-01-06T15:26:36.4011878Z E              [1m       Rejected as the implementation raised a specific error:
+2025-01-06T15:26:36.4012937Z E                       TypeError: np.concatenate(): expecting a non-empty tuple of arrays, got Tuple(list(int64)<iv=None>, array(float64, 1d, C))[0m
+2025-01-06T15:26:36.4014271Z E                raised from /home/runner/micromamba/envs/tardis/lib/python3.12/site-packages/numba/core/typing/npydecl.py:526
+2025-01-06T15:26:36.4015160Z E              [1m      - Of which 1 did not match due to:
+2025-01-06T15:26:36.4015757Z E                    Intrinsic in function 'np_concatenate': File: numba/np/arrayobj.py: Line 5856.
+2025-01-06T15:26:36.4016693Z E                      With argument(s): '(Tuple(list(int64)<iv=[0]>, array(float64, 1d, C)), Literal[int](0))':[0m
+2025-01-06T15:26:36.4017470Z E              [1m       Rejected as the implementation raised a specific error:
+2025-01-06T15:26:36.4018498Z E                       TypeError: np.concatenate(): expecting a non-empty tuple of arrays, got Tuple(list(int64)<iv=[0]>, array(float64, 1d, C))[0m
+2025-01-06T15:26:36.4019599Z E                raised from /home/runner/micromamba/envs/tardis/lib/python3.12/site-packages/numba/core/typing/npydecl.py:526
+2025-01-06T15:26:36.4020571Z E              [0m
+2025-01-06T15:26:36.4021174Z E              [0m[1mDuring: resolving callee type: Function(<intrinsic np_concatenate>)[0m
+2025-01-06T15:26:36.4022372Z E              [0m[1mDuring: typing of call at /home/runner/micromamba/envs/tardis/lib/python3.12/site-packages/numba/np/arrayobj.py (5877)
+2025-01-06T15:26:36.4023194Z E              [0m
+2025-01-06T15:26:36.4023486Z E              [1m
+2025-01-06T15:26:36.4024382Z E              File "../../../micromamba/envs/tardis/lib/python3.12/site-packages/numba/np/arrayobj.py", line 5877:[0m
+2025-01-06T15:26:36.4025164Z E              [1m        def impl(arrays, axis=0):
+2025-01-06T15:26:36.4025695Z E              [1m            return np_concatenate(arrays, axis)
+2025-01-06T15:26:36.4026167Z E              [0m            [1m^[0m[0m
+2025-01-06T15:26:36.4026550Z E           [0m
+2025-01-06T15:26:36.4027213Z E             raised from /home/runner/micromamba/envs/tardis/lib/python3.12/site-packages/numba/core/typeinfer.py:1091
+2025-01-06T15:26:36.4028033Z E           [0m
+2025-01-06T15:26:36.4028653Z E           [0m[1mDuring: resolving callee type: Function(<built-in function concatenate>)[0m
+2025-01-06T15:26:36.4029885Z E           [0m[1mDuring: typing of call at /home/runner/work/tardis/tardis/tardis/plasma/properties/continuum_processes/fast_array_util.py (36)
+2025-01-06T15:26:36.4030801Z E           [0m
+2025-01-06T15:26:36.4031088Z E           [1m
+2025-01-06T15:26:36.4031725Z E           File "tardis/plasma/properties/continuum_processes/fast_array_util.py", line 36:[0m
+2025-01-06T15:26:36.4032488Z E           [1mdef numba_cumulative_trapezoid(f, x):
+2025-01-06T15:26:36.4032891Z E               <source elided>
+2025-01-06T15:26:36.4033208Z E           
+2025-01-06T15:26:36.4033690Z E           [1m    return np.concatenate(([0], cumulative / cumulative[-1]))
+2025-01-06T15:26:36.4034358Z E           [0m    [1m^[0m[0m
+2025-01-06T15:26:36.4034685Z E           
+2025-01-06T15:26:36.4035476Z E           [0m[1mDuring: resolving callee type: type(CPUDispatcher(<function numba_cumulative_trapezoid at 0x7f5bf9ccd080>))[0m
+2025-01-06T15:26:36.4036870Z E           [0m[1mDuring: typing of call at /home/runner/work/tardis/tardis/tardis/plasma/properties/continuum_processes/fast_array_util.py (68)
+2025-01-06T15:26:36.4037796Z E           [0m
+2025-01-06T15:26:36.4038586Z E           [0m[1mDuring: resolving callee type: type(CPUDispatcher(<function numba_cumulative_trapezoid at 0x7f5bf9ccd080>))[0m
+2025-01-06T15:26:36.4040117Z E           [0m[1mDuring: typing of call at /home/runner/work/tardis/tardis/tardis/plasma/properties/continuum_processes/fast_array_util.py (68)
+2025-01-06T15:26:36.4040970Z E           [0m
+2025-01-06T15:26:36.4041247Z E           [1m
+2025-01-06T15:26:36.4041846Z E           File "tardis/plasma/properties/continuum_processes/fast_array_util.py", line 68:[0m
+2025-01-06T15:26:36.4042714Z E           [1mdef cumulative_integrate_array_by_blocks(f, x, block_references):
+2025-01-06T15:26:36.4043253Z E               <source elided>
+2025-01-06T15:26:36.4043564Z E           
+2025-01-06T15:26:36.4044215Z E           [1m            integrated[start:stop, col] = numba_cumulative_trapezoid(
+2025-01-06T15:26:36.4044781Z E           [0m            [1m^[0m[0m
+2025-01-06T15:26:36.4045033Z 
+2025-01-06T15:26:36.4045488Z ../../../micromamba/envs/tardis/lib/python3.12/site-packages/numba/core/dispatcher.py:409: TypingError
+2025-01-06T15:26:36.4046291Z ----------------------------- Captured stdout call -----------------------------
+2025-01-06T15:26:36.4047054Z [[1mtardis.io.model.parse_density_configuration[0m][[1;33mWARNING[0m]  
+2025-01-06T15:26:36.4048196Z 	Number of density points larger than number of shells. Assuming inner point irrelevant ([1mparse_density_configuration.py[0m:114)
+2025-01-06T15:26:36.4049104Z ------------------------------ Captured log call -------------------------------
+2025-01-06T15:26:36.4050286Z WARNING  tardis.io.model.parse_density_configuration:parse_density_configuration.py:114 Number of density points larger than number of shells. Assuming inner point irrelevant
+2025-01-06T15:26:36.4051785Z __________________________ test_montecarlo_continuum ___________________________
+2025-01-06T15:26:36.4052165Z 
+2025-01-06T15:26:36.4053233Z continuum_config = {'tardis_config_version': 'v1.0', 'supernova': {'luminosity_requested': <Quantity 4.31528298e+42 erg / s>, 'time_explo...': 10.0, 'survival_probability': 0.0, 'enable_biasing': False, 'virtual_packet_logging': False}}, 'config_dirname': ''}
+2025-01-06T15:26:36.4055088Z regression_data = <tardis.tests.fixtures.regression_data.RegressionData object at 0x7f5be07b1070>
+2025-01-06T15:26:36.4056102Z nlte_atomic_dataset = <Atomic Data UUID=None MD5=None Lines=69056 Levels=26012>
+2025-01-06T15:26:36.4056545Z 
+2025-01-06T15:26:36.4056689Z     @pytest.mark.continuum
+2025-01-06T15:26:36.4057042Z     def test_montecarlo_continuum(
+2025-01-06T15:26:36.4057403Z         continuum_config,
+2025-01-06T15:26:36.4057714Z         regression_data,
+2025-01-06T15:26:36.4058019Z         nlte_atomic_dataset,
+2025-01-06T15:26:36.4058339Z     ):
+2025-01-06T15:26:36.4058666Z         nlte_atomic_dataset = deepcopy(nlte_atomic_dataset)
+2025-01-06T15:26:36.4059171Z >       continuum_simulation = Simulation.from_config(
+2025-01-06T15:26:36.4059611Z             continuum_config,
+2025-01-06T15:26:36.4059969Z             atom_data=nlte_atomic_dataset,
+2025-01-06T15:26:36.4060367Z             virtual_packet_logging=False,
+2025-01-06T15:26:36.4060756Z         )
+2025-01-06T15:26:36.4060911Z 
+2025-01-06T15:26:36.4061128Z tardis/transport/montecarlo/tests/test_continuum.py:16: 
+2025-01-06T15:26:36.4061632Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2025-01-06T15:26:36.4062110Z tardis/simulation/base.py:769: in from_config
+2025-01-06T15:26:36.4062518Z     plasma = assemble_plasma(
+2025-01-06T15:26:36.4062997Z tardis/plasma/assembly/legacy_assembly.py:37: in assemble_plasma
+2025-01-06T15:26:36.4063535Z     return plasma_solver_factory.assemble(
+2025-01-06T15:26:36.4064148Z tardis/plasma/assembly/base.py:614: in assemble
+2025-01-06T15:26:36.4064558Z     return BasePlasma(
+2025-01-06T15:26:36.4064862Z tardis/io/util.py:195: in __new__
+2025-01-06T15:26:36.4065222Z     instance.__init__(*args, **kwargs)
+2025-01-06T15:26:36.4065601Z tardis/plasma/base.py:40: in __init__
+2025-01-06T15:26:36.4065967Z     self.update(**kwargs)
+2025-01-06T15:26:36.4066290Z tardis/plasma/base.py:192: in update
+2025-01-06T15:26:36.4066715Z     self.plasma_properties_dict[module_name].update()
+2025-01-06T15:26:36.4067378Z tardis/plasma/properties/base.py:110: in update
+2025-01-06T15:26:36.4067819Z     self.calculate(*self._get_input_values()),
+2025-01-06T15:26:36.4068392Z tardis/plasma/properties/continuum_processes/rates.py:231: in calculate
+2025-01-06T15:26:36.4069004Z     alpha_sp_E = cumulative_integrate_array_by_blocks(
+2025-01-06T15:26:36.4069782Z ../../../micromamba/envs/tardis/lib/python3.12/site-packages/numba/core/dispatcher.py:468: in _compile_for_args
+2025-01-06T15:26:36.4070526Z     error_rewrite(e, 'typing')
+2025-01-06T15:26:36.4070910Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2025-01-06T15:26:36.4071225Z 
+2025-01-06T15:26:36.4072255Z e = TypingError('Failed in nopython mode pipeline (step: nopython frontend)\n\x1b[1m\x1b[1m\x1b[1m\x1b[1mFailed in nopytho...[1m            integrated[start:stop, col] = numba_cumulative_trapezoid(\n\x1b[0m            \x1b[1m^\x1b[0m\x1b[0m\n')
+2025-01-06T15:26:36.4073445Z issue_type = 'typing'
+2025-01-06T15:26:36.4073645Z 
+2025-01-06T15:26:36.4073778Z     def error_rewrite(e, issue_type):
+2025-01-06T15:26:36.4074259Z         """
+2025-01-06T15:26:36.4074638Z         Rewrite and raise Exception `e` with help supplied based on the
+2025-01-06T15:26:36.4075143Z         specified issue_type.
+2025-01-06T15:26:36.4075460Z         """
+2025-01-06T15:26:36.4075724Z         if config.SHOW_HELP:
+2025-01-06T15:26:36.4076090Z             help_msg = errors.error_extras[issue_type]
+2025-01-06T15:26:36.4076739Z             e.patch_message('\n'.join((str(e).rstrip(), help_msg)))
+2025-01-06T15:26:36.4077197Z         if config.FULL_TRACEBACKS:
+2025-01-06T15:26:36.4077540Z             raise e
+2025-01-06T15:26:36.4077796Z         else:
+2025-01-06T15:26:36.4078078Z >           raise e.with_traceback(None)
+2025-01-06T15:26:36.4078735Z E           numba.core.errors.TypingError: Failed in nopython mode pipeline (step: nopython frontend)
+2025-01-06T15:26:36.4079657Z E           [1m[1m[1m[1mFailed in nopython mode pipeline (step: nopython frontend)
+2025-01-06T15:26:36.4080588Z E           [1m[1m[1mNo implementation of function Function(<built-in function concatenate>) found for signature:
+2025-01-06T15:26:36.4081232Z E            
+2025-01-06T15:26:36.4081613Z E            >>> concatenate(Tuple(list(int64)<iv=[0]>, array(float64, 1d, C)))
+2025-01-06T15:26:36.4082089Z E            
+2025-01-06T15:26:36.4082387Z E           There are 2 candidate implementations:
+2025-01-06T15:26:36.4082901Z E           [1m  - Of which 1 did not match due to:
+2025-01-06T15:26:36.4083486Z E             Overload in function 'impl_np_concatenate': File: numba/np/arrayobj.py: Line 5873.
+2025-01-06T15:26:36.4084800Z E               With argument(s): '(Tuple(list(int64)<iv=None>, array(float64, 1d, C)))':[0m
+2025-01-06T15:26:36.4085328Z E           [1m   Rejected as the implementation raised a specific error:
+2025-01-06T15:26:36.4085783Z E                TypingError: Failed in nopython mode pipeline (step: nopython frontend)
+2025-01-06T15:26:36.4086392Z E              [1m[1m[1mNo implementation of function Function(<intrinsic np_concatenate>) found for signature:
+2025-01-06T15:26:36.4086814Z E               
+2025-01-06T15:26:36.4087132Z E               >>> np_concatenate(Tuple(list(int64)<iv=None>, array(float64, 1d, C)), Literal[int](0))
+2025-01-06T15:26:36.4087488Z E               
+2025-01-06T15:26:36.4087708Z E              There are 2 candidate implementations:
+2025-01-06T15:26:36.4088057Z E              [1m      - Of which 2 did not match due to:
+2025-01-06T15:26:36.4088445Z E                    Intrinsic in function 'np_concatenate': File: numba/np/arrayobj.py: Line 5856.
+2025-01-06T15:26:36.4089005Z E                      With argument(s): '(Tuple(list(int64)<iv=None>, array(float64, 1d, C)), int64)':[0m
+2025-01-06T15:26:36.4089483Z E              [1m       Rejected as the implementation raised a specific error:
+2025-01-06T15:26:36.4090152Z E                       TypeError: np.concatenate(): expecting a non-empty tuple of arrays, got Tuple(list(int64)<iv=None>, array(float64, 1d, C))[0m
+2025-01-06T15:26:36.4091123Z E                raised from /home/runner/micromamba/envs/tardis/lib/python3.12/site-packages/numba/core/typing/npydecl.py:526
+2025-01-06T15:26:36.4091645Z E              [0m
+2025-01-06T15:26:36.4092023Z E              [0m[1mDuring: resolving callee type: Function(<intrinsic np_concatenate>)[0m
+2025-01-06T15:26:36.4092749Z E              [0m[1mDuring: typing of call at /home/runner/micromamba/envs/tardis/lib/python3.12/site-packages/numba/np/arrayobj.py (5877)
+2025-01-06T15:26:36.4093274Z E              [0m
+2025-01-06T15:26:36.4093472Z E              [1m
+2025-01-06T15:26:36.4094058Z E              File "../../../micromamba/envs/tardis/lib/python3.12/site-packages/numba/np/arrayobj.py", line 5877:[0m
+2025-01-06T15:26:36.4094588Z E              [1m        def impl(arrays, axis=0):
+2025-01-06T15:26:36.4094930Z E              [1m            return np_concatenate(arrays, axis)
+2025-01-06T15:26:36.4095244Z E              [0m            [1m^[0m[0m
+2025-01-06T15:26:36.4095506Z E           [0m
+2025-01-06T15:26:36.4095929Z E             raised from /home/runner/micromamba/envs/tardis/lib/python3.12/site-packages/numba/core/typeinfer.py:1091
+2025-01-06T15:26:36.4096465Z E           [1m  - Of which 1 did not match due to:
+2025-01-06T15:26:36.4096855Z E             Overload in function 'impl_np_concatenate': File: numba/np/arrayobj.py: Line 5873.
+2025-01-06T15:26:36.4097572Z E               With argument(s): '(Tuple(list(int64)<iv=[0]>, array(float64, 1d, C)))':[0m
+2025-01-06T15:26:36.4098030Z E           [1m   Rejected as the implementation raised a specific error:
+2025-01-06T15:26:36.4098450Z E                TypingError: Failed in nopython mode pipeline (step: nopython frontend)
+2025-01-06T15:26:36.4099045Z E              [1m[1m[1mNo implementation of function Function(<intrinsic np_concatenate>) found for signature:
+2025-01-06T15:26:36.4099444Z E               
+2025-01-06T15:26:36.4099746Z E               >>> np_concatenate(Tuple(list(int64)<iv=[0]>, array(float64, 1d, C)), Literal[int](0))
+2025-01-06T15:26:36.4100103Z E               
+2025-01-06T15:26:36.4100311Z E              There are 2 candidate implementations:
+2025-01-06T15:26:36.4100648Z E              [1m      - Of which 1 did not match due to:
+2025-01-06T15:26:36.4101035Z E                    Intrinsic in function 'np_concatenate': File: numba/np/arrayobj.py: Line 5856.
+2025-01-06T15:26:36.4101587Z E                      With argument(s): '(Tuple(list(int64)<iv=None>, array(float64, 1d, C)), int64)':[0m
+2025-01-06T15:26:36.4102078Z E              [1m       Rejected as the implementation raised a specific error:
+2025-01-06T15:26:36.4102739Z E                       TypeError: np.concatenate(): expecting a non-empty tuple of arrays, got Tuple(list(int64)<iv=None>, array(float64, 1d, C))[0m
+2025-01-06T15:26:36.4103488Z E                raised from /home/runner/micromamba/envs/tardis/lib/python3.12/site-packages/numba/core/typing/npydecl.py:526
+2025-01-06T15:26:36.4104213Z E              [1m      - Of which 1 did not match due to:
+2025-01-06T15:26:36.4104595Z E                    Intrinsic in function 'np_concatenate': File: numba/np/arrayobj.py: Line 5856.
+2025-01-06T15:26:36.4105172Z E                      With argument(s): '(Tuple(list(int64)<iv=[0]>, array(float64, 1d, C)), Literal[int](0))':[0m
+2025-01-06T15:26:36.4105662Z E              [1m       Rejected as the implementation raised a specific error:
+2025-01-06T15:26:36.4106317Z E                       TypeError: np.concatenate(): expecting a non-empty tuple of arrays, got Tuple(list(int64)<iv=[0]>, array(float64, 1d, C))[0m
+2025-01-06T15:26:36.4107075Z E                raised from /home/runner/micromamba/envs/tardis/lib/python3.12/site-packages/numba/core/typing/npydecl.py:526
+2025-01-06T15:26:36.4107576Z E              [0m
+2025-01-06T15:26:36.4107987Z E              [0m[1mDuring: resolving callee type: Function(<intrinsic np_concatenate>)[0m
+2025-01-06T15:26:36.4108707Z E              [0m[1mDuring: typing of call at /home/runner/micromamba/envs/tardis/lib/python3.12/site-packages/numba/np/arrayobj.py (5877)
+2025-01-06T15:26:36.4109381Z E              [0m
+2025-01-06T15:26:36.4109581Z E              [1m
+2025-01-06T15:26:36.4110046Z E              File "../../../micromamba/envs/tardis/lib/python3.12/site-packages/numba/np/arrayobj.py", line 5877:[0m
+2025-01-06T15:26:36.4110541Z E              [1m        def impl(arrays, axis=0):
+2025-01-06T15:26:36.4110882Z E              [1m            return np_concatenate(arrays, axis)
+2025-01-06T15:26:36.4111195Z E              [0m            [1m^[0m[0m
+2025-01-06T15:26:36.4111448Z E           [0m
+2025-01-06T15:26:36.4111866Z E             raised from /home/runner/micromamba/envs/tardis/lib/python3.12/site-packages/numba/core/typeinfer.py:1091
+2025-01-06T15:26:36.4112356Z E           [0m
+2025-01-06T15:26:36.4112731Z E           [0m[1mDuring: resolving callee type: Function(<built-in function concatenate>)[0m
+2025-01-06T15:26:36.4113498Z E           [0m[1mDuring: typing of call at /home/runner/work/tardis/tardis/tardis/plasma/properties/continuum_processes/fast_array_util.py (36)
+2025-01-06T15:26:36.4114172Z E           [0m
+2025-01-06T15:26:36.4114371Z E           [1m
+2025-01-06T15:26:36.4114775Z E           File "tardis/plasma/properties/continuum_processes/fast_array_util.py", line 36:[0m
+2025-01-06T15:26:36.4115248Z E           [1mdef numba_cumulative_trapezoid(f, x):
+2025-01-06T15:26:36.4115642Z E               <source elided>
+2025-01-06T15:26:36.4115857Z E           
+2025-01-06T15:26:36.4116166Z E           [1m    return np.concatenate(([0], cumulative / cumulative[-1]))
+2025-01-06T15:26:36.4116509Z E           [0m    [1m^[0m[0m
+2025-01-06T15:26:36.4116726Z E           
+2025-01-06T15:26:36.4117228Z E           [0m[1mDuring: resolving callee type: type(CPUDispatcher(<function numba_cumulative_trapezoid at 0x7f5bf9ccd080>))[0m
+2025-01-06T15:26:36.4118123Z E           [0m[1mDuring: typing of call at /home/runner/work/tardis/tardis/tardis/plasma/properties/continuum_processes/fast_array_util.py (68)
+2025-01-06T15:26:36.4118693Z E           [0m
+2025-01-06T15:26:36.4119203Z E           [0m[1mDuring: resolving callee type: type(CPUDispatcher(<function numba_cumulative_trapezoid at 0x7f5bf9ccd080>))[0m
+2025-01-06T15:26:36.4120083Z E           [0m[1mDuring: typing of call at /home/runner/work/tardis/tardis/tardis/plasma/properties/continuum_processes/fast_array_util.py (68)
+2025-01-06T15:26:36.4120645Z E           [0m
+2025-01-06T15:26:36.4120851Z E           [1m
+2025-01-06T15:26:36.4121261Z E           File "tardis/plasma/properties/continuum_processes/fast_array_util.py", line 68:[0m
+2025-01-06T15:26:36.4121812Z E           [1mdef cumulative_integrate_array_by_blocks(f, x, block_references):
+2025-01-06T15:26:36.4122156Z E               <source elided>
+2025-01-06T15:26:36.4122365Z E           
+2025-01-06T15:26:36.4122678Z E           [1m            integrated[start:stop, col] = numba_cumulative_trapezoid(
+2025-01-06T15:26:36.4123031Z E           [0m            [1m^[0m[0m
+2025-01-06T15:26:36.4123206Z 
+2025-01-06T15:26:36.4123486Z ../../../micromamba/envs/tardis/lib/python3.12/site-packages/numba/core/dispatcher.py:409: TypingError
+2025-01-06T15:26:36.4124115Z ----------------------------- Captured stdout call -----------------------------
+2025-01-06T15:26:36.4124607Z [[1mtardis.io.model.parse_density_configuration[0m][[1;33mWARNING[0m]  
+2025-01-06T15:26:36.4125319Z 	Number of density points larger than number of shells. Assuming inner point irrelevant ([1mparse_density_configuration.py[0m:114)
+2025-01-06T15:26:36.4125905Z ------------------------------ Captured log call -------------------------------
+2025-01-06T15:26:36.4126628Z WARNING  tardis.io.model.parse_density_configuration:parse_density_configuration.py:114 Number of density points larger than number of shells. Assuming inner point irrelevant
+2025-01-06T15:26:36.4127304Z =============================== warnings summary ===============================
+2025-01-06T15:26:36.4127612Z tardis/io/configuration/config_validator.py:6
+2025-01-06T15:26:36.4128041Z tardis/io/configuration/config_validator.py:6
+2025-01-06T15:26:36.4128526Z   /home/runner/work/tardis/tardis/tardis/io/configuration/config_validator.py:6: DeprecationWarning:
+2025-01-06T15:26:36.4128976Z   
+2025-01-06T15:26:36.4130186Z   jsonschema.RefResolver is deprecated as of v4.18.0, in favor of the https://github.com/python-jsonschema/referencing library, which provides more compliant referencing behavior as well as more flexible APIs for customization. A future release will remove RefResolver. Please file a feature request (on referencing) if you are missing an API for the kind of customization you need.
+2025-01-06T15:26:36.4131368Z 
+2025-01-06T15:26:36.4131599Z ../../../micromamba/envs/tardis/lib/python3.12/site-packages/jupyter_client/connect.py:22
+2025-01-06T15:26:36.4132260Z   /home/runner/micromamba/envs/tardis/lib/python3.12/site-packages/jupyter_client/connect.py:22: DeprecationWarning:
+2025-01-06T15:26:36.4132778Z   
+2025-01-06T15:26:36.4133020Z   Jupyter is migrating its paths to use standard platformdirs
+2025-01-06T15:26:36.4133402Z   given by the platformdirs library.  To remove this warning and
+2025-01-06T15:26:36.4133797Z   see the appropriate new directories, set the environment variable
+2025-01-06T15:26:36.4134278Z   `JUPYTER_PLATFORM_DIRS=1` and then run `jupyter --paths`.
+2025-01-06T15:26:36.4134653Z   The use of platformdirs will be the default in `jupyter_core` v6
+2025-01-06T15:26:36.4135013Z 
+2025-01-06T15:26:36.4139867Z tardis/transport/montecarlo/estimators/tests/test_continuum_property_solver.py::test_continuum_estimators
+2025-01-06T15:26:36.4140775Z   /home/runner/work/tardis/tardis/tardis/plasma/properties/continuum_processes/fast_array_util.py:68: NumbaPendingDeprecationWarning:
+2025-01-06T15:26:36.4141371Z   
+2025-01-06T15:26:36.4142597Z   [1m[1m[1m[1mCode using Numba extension API maybe depending on 'old_style' error-capturing, which is deprecated and will be replaced by 'new_style' in a future release. See details at https://numba.readthedocs.io/en/latest/reference/deprecation.html#deprecation-of-old-style-numba-captured-errors
+2025-01-06T15:26:36.4143638Z   Exception origin:
+2025-01-06T15:26:36.4144315Z     File "/home/runner/micromamba/envs/tardis/lib/python3.12/site-packages/numba/core/typing/npydecl.py", line 526, in _sequence_of_arrays
+2025-01-06T15:26:36.4144978Z       raise TypeError("%s(): expecting a non-empty tuple of arrays, "
+2025-01-06T15:26:36.4145325Z   [0m[0m[0m[0m
+2025-01-06T15:26:36.4145443Z 
+2025-01-06T15:26:36.4145638Z -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+2025-01-06T15:26:36.4145913Z 
+2025-01-06T15:26:36.4146083Z ---------- coverage: platform linux, python 3.12.4-final-0 -----------
+2025-01-06T15:26:36.4146441Z Coverage HTML written to dir coverage_html_report
+2025-01-06T15:26:36.4146732Z Coverage XML written to file coverage.xml
+2025-01-06T15:26:36.4146907Z 
+2025-01-06T15:26:36.4147030Z =========================== short test summary info ============================
+2025-01-06T15:26:36.4147892Z FAILED tardis/transport/montecarlo/estimators/tests/test_continuum_property_solver.py::test_continuum_estimators - numba.core.errors.TypingError: Failed in nopython mode pipeline (step: nopython frontend)
+2025-01-06T15:26:36.4148835Z [1m[1m[1m[1mFailed in nopython mode pipeline (step: nopython frontend)
+2025-01-06T15:26:36.4149397Z [1m[1m[1mNo implementation of function Function(<built-in function concatenate>) found for signature:
+2025-01-06T15:26:36.4149807Z  
+2025-01-06T15:26:36.4150046Z  >>> concatenate(Tuple(list(int64)<iv=[0]>, array(float64, 1d, C)))
+2025-01-06T15:26:36.4150344Z  
+2025-01-06T15:26:36.4150521Z There are 2 candidate implementations:
+2025-01-06T15:26:36.4150814Z [1m  - Of which 1 did not match due to:
+2025-01-06T15:26:36.4151191Z   Overload in function 'impl_np_concatenate': File: numba/np/arrayobj.py: Line 5873.
+2025-01-06T15:26:36.4151717Z     With argument(s): '(Tuple(list(int64)<iv=None>, array(float64, 1d, C)))':[0m
+2025-01-06T15:26:36.4152342Z [1m   Rejected as the implementation raised a specific error:
+2025-01-06T15:26:36.4152742Z      TypingError: Failed in nopython mode pipeline (step: nopython frontend)
+2025-01-06T15:26:36.4153323Z    [1m[1m[1mNo implementation of function Function(<intrinsic np_concatenate>) found for signature:
+2025-01-06T15:26:36.4153719Z     
+2025-01-06T15:26:36.4154114Z     >>> np_concatenate(Tuple(list(int64)<iv=None>, array(float64, 1d, C)), Literal[int](0))
+2025-01-06T15:26:36.4154475Z     
+2025-01-06T15:26:36.4154652Z    There are 2 candidate implementations:
+2025-01-06T15:26:36.4154966Z    [1m      - Of which 2 did not match due to:
+2025-01-06T15:26:36.4155338Z          Intrinsic in function 'np_concatenate': File: numba/np/arrayobj.py: Line 5856.
+2025-01-06T15:26:36.4155877Z            With argument(s): '(Tuple(list(int64)<iv=None>, array(float64, 1d, C)), int64)':[0m
+2025-01-06T15:26:36.4156341Z    [1m       Rejected as the implementation raised a specific error:
+2025-01-06T15:26:36.4156985Z             TypeError: np.concatenate(): expecting a non-empty tuple of arrays, got Tuple(list(int64)<iv=None>, array(float64, 1d, C))[0m
+2025-01-06T15:26:36.4157743Z      raised from /home/runner/micromamba/envs/tardis/lib/python3.12/site-packages/numba/core/typing/npydecl.py:526
+2025-01-06T15:26:36.4158235Z    [0m
+2025-01-06T15:26:36.4158575Z    [0m[1mDuring: resolving callee type: Function(<intrinsic np_concatenate>)[0m
+2025-01-06T15:26:36.4159423Z    [0m[1mDuring: typing of call at /home/runner/micromamba/envs/tardis/lib/python3.12/site-packages/numba/np/arrayobj.py (5877)
+2025-01-06T15:26:36.4159934Z    [0m
+2025-01-06T15:26:36.4160105Z    [1m
+2025-01-06T15:26:36.4160538Z    File "../../../micromamba/envs/tardis/lib/python3.12/site-packages/numba/np/arrayobj.py", line 5877:[0m
+2025-01-06T15:26:36.4161017Z    [1m        def impl(arrays, axis=0):
+2025-01-06T15:26:36.4161332Z    [1m            return np_concatenate(arrays, axis)
+2025-01-06T15:26:36.4161626Z    [0m            [1m^[0m[0m
+2025-01-06T15:26:36.4161852Z [0m
+2025-01-06T15:26:36.4162245Z   raised from /home/runner/micromamba/envs/tardis/lib/python3.12/site-packages/numba/core/typeinfer.py:1091
+2025-01-06T15:26:36.4162755Z [1m  - Of which 1 did not match due to:
+2025-01-06T15:26:36.4163125Z   Overload in function 'impl_np_concatenate': File: numba/np/arrayobj.py: Line 5873.
+2025-01-06T15:26:36.4163642Z     With argument(s): '(Tuple(list(int64)<iv=[0]>, array(float64, 1d, C)))':[0m
+2025-01-06T15:26:36.4164189Z [1m   Rejected as the implementation raised a specific error:
+2025-01-06T15:26:36.4164593Z      TypingError: Failed in nopython mode pipeline (step: nopython frontend)
+2025-01-06T15:26:36.4165165Z    [1m[1m[1mNo implementation of function Function(<intrinsic np_concatenate>) found for signature:
+2025-01-06T15:26:36.4165559Z     
+2025-01-06T15:26:36.4165839Z     >>> np_concatenate(Tuple(list(int64)<iv=[0]>, array(float64, 1d, C)), Literal[int](0))
+2025-01-06T15:26:36.4166180Z     
+2025-01-06T15:26:36.4166358Z    There are 2 candidate implementations:
+2025-01-06T15:26:36.4166672Z    [1m      - Of which 1 did not match due to:
+2025-01-06T15:26:36.4167038Z          Intrinsic in function 'np_concatenate': File: numba/np/arrayobj.py: Line 5856.
+2025-01-06T15:26:36.4167572Z            With argument(s): '(Tuple(list(int64)<iv=None>, array(float64, 1d, C)), int64)':[0m
+2025-01-06T15:26:36.4168041Z    [1m       Rejected as the implementation raised a specific error:
+2025-01-06T15:26:36.4168691Z             TypeError: np.concatenate(): expecting a non-empty tuple of arrays, got Tuple(list(int64)<iv=None>, array(float64, 1d, C))[0m
+2025-01-06T15:26:36.4169431Z      raised from /home/runner/micromamba/envs/tardis/lib/python3.12/site-packages/numba/core/typing/npydecl.py:526
+2025-01-06T15:26:36.4169966Z    [1m      - Of which 1 did not match due to:
+2025-01-06T15:26:36.4170327Z          Intrinsic in function 'np_concatenate': File: numba/np/arrayobj.py: Line 5856.
+2025-01-06T15:26:36.4170878Z            With argument(s): '(Tuple(list(int64)<iv=[0]>, array(float64, 1d, C)), Literal[int](0))':[0m
+2025-01-06T15:26:36.4171485Z    [1m       Rejected as the implementation raised a specific error:
+2025-01-06T15:26:36.4172111Z             TypeError: np.concatenate(): expecting a non-empty tuple of arrays, got Tuple(list(int64)<iv=[0]>, array(float64, 1d, C))[0m
+2025-01-06T15:26:36.4172831Z      raised from /home/runner/micromamba/envs/tardis/lib/python3.12/site-packages/numba/core/typing/npydecl.py:526
+2025-01-06T15:26:36.4173324Z    [0m
+2025-01-06T15:26:36.4173657Z    [0m[1mDuring: resolving callee type: Function(<intrinsic np_concatenate>)[0m
+2025-01-06T15:26:36.4174451Z    [0m[1mDuring: typing of call at /home/runner/micromamba/envs/tardis/lib/python3.12/site-packages/numba/np/arrayobj.py (5877)
+2025-01-06T15:26:36.4174961Z    [0m
+2025-01-06T15:26:36.4175138Z    [1m
+2025-01-06T15:26:36.4175567Z    File "../../../micromamba/envs/tardis/lib/python3.12/site-packages/numba/np/arrayobj.py", line 5877:[0m
+2025-01-06T15:26:36.4176039Z    [1m        def impl(arrays, axis=0):
+2025-01-06T15:26:36.4176351Z    [1m            return np_concatenate(arrays, axis)
+2025-01-06T15:26:36.4176640Z    [0m            [1m^[0m[0m
+2025-01-06T15:26:36.4176871Z [0m
+2025-01-06T15:26:36.4177264Z   raised from /home/runner/micromamba/envs/tardis/lib/python3.12/site-packages/numba/core/typeinfer.py:1091
+2025-01-06T15:26:36.4177747Z [0m
+2025-01-06T15:26:36.4178086Z [0m[1mDuring: resolving callee type: Function(<built-in function concatenate>)[0m
+2025-01-06T15:26:36.4178985Z [0m[1mDuring: typing of call at /home/runner/work/tardis/tardis/tardis/plasma/properties/continuum_processes/fast_array_util.py (36)
+2025-01-06T15:26:36.4179538Z [0m
+2025-01-06T15:26:36.4179703Z [1m
+2025-01-06T15:26:36.4180070Z File "tardis/plasma/properties/continuum_processes/fast_array_util.py", line 36:[0m
+2025-01-06T15:26:36.4180509Z [1mdef numba_cumulative_trapezoid(f, x):
+2025-01-06T15:26:36.4180756Z     <source elided>
+2025-01-06T15:26:36.4180870Z 
+2025-01-06T15:26:36.4181069Z [1m    return np.concatenate(([0], cumulative / cumulative[-1]))
+2025-01-06T15:26:36.4181401Z [0m    [1m^[0m[0m
+2025-01-06T15:26:36.4181526Z 
+2025-01-06T15:26:36.4181915Z [0m[1mDuring: resolving callee type: type(CPUDispatcher(<function numba_cumulative_trapezoid at 0x7f5bf9ccd080>))[0m
+2025-01-06T15:26:36.4182775Z [0m[1mDuring: typing of call at /home/runner/work/tardis/tardis/tardis/plasma/properties/continuum_processes/fast_array_util.py (68)
+2025-01-06T15:26:36.4183325Z [0m
+2025-01-06T15:26:36.4183792Z [0m[1mDuring: resolving callee type: type(CPUDispatcher(<function numba_cumulative_trapezoid at 0x7f5bf9ccd080>))[0m
+2025-01-06T15:26:36.4184767Z [0m[1mDuring: typing of call at /home/runner/work/tardis/tardis/tardis/plasma/properties/continuum_processes/fast_array_util.py (68)
+2025-01-06T15:26:36.4185309Z [0m
+2025-01-06T15:26:36.4185471Z [1m
+2025-01-06T15:26:36.4185838Z File "tardis/plasma/properties/continuum_processes/fast_array_util.py", line 68:[0m
+2025-01-06T15:26:36.4186369Z [1mdef cumulative_integrate_array_by_blocks(f, x, block_references):
+2025-01-06T15:26:36.4186693Z     <source elided>
+2025-01-06T15:26:36.4186804Z 
+2025-01-06T15:26:36.4187006Z [1m            integrated[start:stop, col] = numba_cumulative_trapezoid(
+2025-01-06T15:26:36.4187345Z [0m            [1m^[0m[0m
+2025-01-06T15:26:36.4188084Z FAILED tardis/transport/montecarlo/tests/test_continuum.py::test_montecarlo_continuum - numba.core.errors.TypingError: Failed in nopython mode pipeline (step: nopython frontend)
+2025-01-06T15:26:36.4188925Z [1m[1m[1m[1mFailed in nopython mode pipeline (step: nopython frontend)
+2025-01-06T15:26:36.4189485Z [1m[1m[1mNo implementation of function Function(<built-in function concatenate>) found for signature:
+2025-01-06T15:26:36.4189889Z  
+2025-01-06T15:26:36.4190126Z  >>> concatenate(Tuple(list(int64)<iv=[0]>, array(float64, 1d, C)))
+2025-01-06T15:26:36.4190423Z  
+2025-01-06T15:26:36.4190599Z There are 2 candidate implementations:
+2025-01-06T15:26:36.4190890Z [1m  - Of which 1 did not match due to:
+2025-01-06T15:26:36.4191398Z   Overload in function 'impl_np_concatenate': File: numba/np/arrayobj.py: Line 5873.
+2025-01-06T15:26:36.4191929Z     With argument(s): '(Tuple(list(int64)<iv=None>, array(float64, 1d, C)))':[0m
+2025-01-06T15:26:36.4192380Z [1m   Rejected as the implementation raised a specific error:
+2025-01-06T15:26:36.4192785Z      TypingError: Failed in nopython mode pipeline (step: nopython frontend)
+2025-01-06T15:26:36.4193362Z    [1m[1m[1mNo implementation of function Function(<intrinsic np_concatenate>) found for signature:
+2025-01-06T15:26:36.4193753Z     
+2025-01-06T15:26:36.4194158Z     >>> np_concatenate(Tuple(list(int64)<iv=None>, array(float64, 1d, C)), Literal[int](0))
+2025-01-06T15:26:36.4194519Z     
+2025-01-06T15:26:36.4194705Z    There are 2 candidate implementations:
+2025-01-06T15:26:36.4195024Z    [1m      - Of which 2 did not match due to:
+2025-01-06T15:26:36.4195398Z          Intrinsic in function 'np_concatenate': File: numba/np/arrayobj.py: Line 5856.
+2025-01-06T15:26:36.4195943Z            With argument(s): '(Tuple(list(int64)<iv=None>, array(float64, 1d, C)), int64)':[0m
+2025-01-06T15:26:36.4196415Z    [1m       Rejected as the implementation raised a specific error:
+2025-01-06T15:26:36.4197066Z             TypeError: np.concatenate(): expecting a non-empty tuple of arrays, got Tuple(list(int64)<iv=None>, array(float64, 1d, C))[0m
+2025-01-06T15:26:36.4197813Z      raised from /home/runner/micromamba/envs/tardis/lib/python3.12/site-packages/numba/core/typing/npydecl.py:526
+2025-01-06T15:26:36.4198440Z    [0m
+2025-01-06T15:26:36.4198782Z    [0m[1mDuring: resolving callee type: Function(<intrinsic np_concatenate>)[0m
+2025-01-06T15:26:36.4199483Z    [0m[1mDuring: typing of call at /home/runner/micromamba/envs/tardis/lib/python3.12/site-packages/numba/np/arrayobj.py (5877)
+2025-01-06T15:26:36.4200008Z    [0m
+2025-01-06T15:26:36.4200178Z    [1m
+2025-01-06T15:26:36.4200610Z    File "../../../micromamba/envs/tardis/lib/python3.12/site-packages/numba/np/arrayobj.py", line 5877:[0m
+2025-01-06T15:26:36.4201095Z    [1m        def impl(arrays, axis=0):
+2025-01-06T15:26:36.4201410Z    [1m            return np_concatenate(arrays, axis)
+2025-01-06T15:26:36.4201701Z    [0m            [1m^[0m[0m
+2025-01-06T15:26:36.4201922Z [0m
+2025-01-06T15:26:36.4202316Z   raised from /home/runner/micromamba/envs/tardis/lib/python3.12/site-packages/numba/core/typeinfer.py:1091
+2025-01-06T15:26:36.4202836Z [1m  - Of which 1 did not match due to:
+2025-01-06T15:26:36.4203214Z   Overload in function 'impl_np_concatenate': File: numba/np/arrayobj.py: Line 5873.
+2025-01-06T15:26:36.4203738Z     With argument(s): '(Tuple(list(int64)<iv=[0]>, array(float64, 1d, C)))':[0m
+2025-01-06T15:26:36.4204281Z [1m   Rejected as the implementation raised a specific error:
+2025-01-06T15:26:36.4204701Z      TypingError: Failed in nopython mode pipeline (step: nopython frontend)
+2025-01-06T15:26:36.4205282Z    [1m[1m[1mNo implementation of function Function(<intrinsic np_concatenate>) found for signature:
+2025-01-06T15:26:36.4205685Z     
+2025-01-06T15:26:36.4205965Z     >>> np_concatenate(Tuple(list(int64)<iv=[0]>, array(float64, 1d, C)), Literal[int](0))
+2025-01-06T15:26:36.4206312Z     
+2025-01-06T15:26:36.4206497Z    There are 2 candidate implementations:
+2025-01-06T15:26:36.4206840Z    [1m      - Of which 1 did not match due to:
+2025-01-06T15:26:36.4207209Z          Intrinsic in function 'np_concatenate': File: numba/np/arrayobj.py: Line 5856.
+2025-01-06T15:26:36.4207752Z            With argument(s): '(Tuple(list(int64)<iv=None>, array(float64, 1d, C)), int64)':[0m
+2025-01-06T15:26:36.4208224Z    [1m       Rejected as the implementation raised a specific error:
+2025-01-06T15:26:36.4208868Z             TypeError: np.concatenate(): expecting a non-empty tuple of arrays, got Tuple(list(int64)<iv=None>, array(float64, 1d, C))[0m
+2025-01-06T15:26:36.4209607Z      raised from /home/runner/micromamba/envs/tardis/lib/python3.12/site-packages/numba/core/typing/npydecl.py:526
+2025-01-06T15:26:36.4210318Z    [1m      - Of which 1 did not match due to:
+2025-01-06T15:26:36.4210702Z          Intrinsic in function 'np_concatenate': File: numba/np/arrayobj.py: Line 5856.
+2025-01-06T15:26:36.4211280Z            With argument(s): '(Tuple(list(int64)<iv=[0]>, array(float64, 1d, C)), Literal[int](0))':[0m
+2025-01-06T15:26:36.4211769Z    [1m       Rejected as the implementation raised a specific error:
+2025-01-06T15:26:36.4212416Z             TypeError: np.concatenate(): expecting a non-empty tuple of arrays, got Tuple(list(int64)<iv=[0]>, array(float64, 1d, C))[0m
+2025-01-06T15:26:36.4213157Z      raised from /home/runner/micromamba/envs/tardis/lib/python3.12/site-packages/numba/core/typing/npydecl.py:526
+2025-01-06T15:26:36.4214233Z    [0m
+2025-01-06T15:26:36.4214705Z    [0m[1mDuring: resolving callee type: Function(<intrinsic np_concatenate>)[0m
+2025-01-06T15:26:36.4215531Z    [0m[1mDuring: typing of call at /home/runner/micromamba/envs/tardis/lib/python3.12/site-packages/numba/np/arrayobj.py (5877)
+2025-01-06T15:26:36.4216234Z    [0m
+2025-01-06T15:26:36.4216518Z    [1m
+2025-01-06T15:26:36.4217081Z    File "../../../micromamba/envs/tardis/lib/python3.12/site-packages/numba/np/arrayobj.py", line 5877:[0m
+2025-01-06T15:26:36.4217670Z    [1m        def impl(arrays, axis=0):
+2025-01-06T15:26:36.4218108Z    [1m            return np_concatenate(arrays, axis)
+2025-01-06T15:26:36.4218543Z    [0m            [1m^[0m[0m
+2025-01-06T15:26:36.4232615Z [0m
+2025-01-06T15:26:36.4233112Z   raised from /home/runner/micromamba/envs/tardis/lib/python3.12/site-packages/numba/core/typeinfer.py:1091
+2025-01-06T15:26:36.4233656Z [0m
+2025-01-06T15:26:36.4234169Z [0m[1mDuring: resolving callee type: Function(<built-in function concatenate>)[0m
+2025-01-06T15:26:36.4234970Z [0m[1mDuring: typing of call at /home/runner/work/tardis/tardis/tardis/plasma/properties/continuum_processes/fast_array_util.py (36)
+2025-01-06T15:26:36.4235535Z [0m
+2025-01-06T15:26:36.4235705Z [1m
+2025-01-06T15:26:36.4236085Z File "tardis/plasma/properties/continuum_processes/fast_array_util.py", line 36:[0m
+2025-01-06T15:26:36.4236554Z [1mdef numba_cumulative_trapezoid(f, x):
+2025-01-06T15:26:36.4236819Z     <source elided>
+2025-01-06T15:26:36.4236937Z 
+2025-01-06T15:26:36.4237142Z [1m    return np.concatenate(([0], cumulative / cumulative[-1]))
+2025-01-06T15:26:36.4237470Z [0m    [1m^[0m[0m
+2025-01-06T15:26:36.4237590Z 
+2025-01-06T15:26:36.4238000Z [0m[1mDuring: resolving callee type: type(CPUDispatcher(<function numba_cumulative_trapezoid at 0x7f5bf9ccd080>))[0m
+2025-01-06T15:26:36.4238869Z [0m[1mDuring: typing of call at /home/runner/work/tardis/tardis/tardis/plasma/properties/continuum_processes/fast_array_util.py (68)
+2025-01-06T15:26:36.4239417Z [0m
+2025-01-06T15:26:36.4239885Z [0m[1mDuring: resolving callee type: type(CPUDispatcher(<function numba_cumulative_trapezoid at 0x7f5bf9ccd080>))[0m
+2025-01-06T15:26:36.4240734Z [0m[1mDuring: typing of call at /home/runner/work/tardis/tardis/tardis/plasma/properties/continuum_processes/fast_array_util.py (68)
+2025-01-06T15:26:36.4241282Z [0m
+2025-01-06T15:26:36.4241450Z [1m
+2025-01-06T15:26:36.4241825Z File "tardis/plasma/properties/continuum_processes/fast_array_util.py", line 68:[0m
+2025-01-06T15:26:36.4242361Z [1mdef cumulative_integrate_array_by_blocks(f, x, block_references):
+2025-01-06T15:26:36.4242700Z     <source elided>
+2025-01-06T15:26:36.4242814Z 
+2025-01-06T15:26:36.4243023Z [1m            integrated[start:stop, col] = numba_cumulative_trapezoid(
+2025-01-06T15:26:36.4243366Z [0m            [1m^[0m[0m
+2025-01-06T15:26:36.4243657Z =============== 2 failed, 1794 deselected, 4 warnings in 23.34s ================
+2025-01-06T15:26:37.2315457Z ##[error]Process completed with exit code 1.

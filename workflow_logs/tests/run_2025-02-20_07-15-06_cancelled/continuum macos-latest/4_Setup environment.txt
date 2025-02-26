@@ -1,0 +1,73 @@
+2025-02-20T07:16:31.7940420Z Prepare all required actions
+2025-02-20T07:16:31.7940950Z Getting action download info
+2025-02-20T07:16:31.8953580Z Download action repository 'mamba-org/setup-micromamba@v1' (SHA:4b9113af4fba0e9e1124b252dd6497a419e7396d)
+2025-02-20T07:16:33.2049220Z ##[group]Run ./.github/actions/setup_env
+2025-02-20T07:16:33.2049620Z with:
+2025-02-20T07:16:33.2049880Z   os-label: osx-arm64
+2025-02-20T07:16:33.2050140Z env:
+2025-02-20T07:16:33.2050310Z   CACHE_NUMBER: 0
+2025-02-20T07:16:33.2050820Z   PYTEST_FLAGS: --tardis-regression-data=/Users/runner/work/tardis/tardis/tardis-regression-data --cov=tardis --cov-report=xml --cov-report=html --cov-append
+2025-02-20T07:16:33.2051400Z   CODECOV_TOKEN: 
+2025-02-20T07:16:33.2051570Z ##[endgroup]
+2025-02-20T07:16:33.2088120Z ##[group]Run file_hash=$(cat conda-osx-arm64.lock | shasum -a 256 | cut -d' ' -f1)
+2025-02-20T07:16:33.2088550Z [36;1mfile_hash=$(cat conda-osx-arm64.lock | shasum -a 256 | cut -d' ' -f1)[0m
+2025-02-20T07:16:33.2088990Z [36;1mecho "file_hash=tardis-conda-env-osx-arm64-${file_hash}-v1" >> "${GITHUB_OUTPUT}"[0m
+2025-02-20T07:16:33.2136470Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+2025-02-20T07:16:33.2136690Z env:
+2025-02-20T07:16:33.2136790Z   CACHE_NUMBER: 0
+2025-02-20T07:16:33.2137250Z   PYTEST_FLAGS: --tardis-regression-data=/Users/runner/work/tardis/tardis/tardis-regression-data --cov=tardis --cov-report=xml --cov-report=html --cov-append
+2025-02-20T07:16:33.2137710Z   CODECOV_TOKEN: 
+2025-02-20T07:16:33.2137840Z ##[endgroup]
+2025-02-20T07:16:33.3357440Z ##[group]Run mamba-org/setup-micromamba@v1
+2025-02-20T07:16:33.3357700Z with:
+2025-02-20T07:16:33.3357850Z   environment-file: conda-osx-arm64.lock
+2025-02-20T07:16:33.3358270Z   cache-environment-key: tardis-conda-env-osx-arm64-bf0d0a4d4c847cca72476c6c68c493d56c484aada7e80de0e42c7607fcef5824-v1
+2025-02-20T07:16:33.3358910Z   cache-downloads-key: tardis-conda-env-osx-arm64-bf0d0a4d4c847cca72476c6c68c493d56c484aada7e80de0e42c7607fcef5824-v1
+2025-02-20T07:16:33.3359330Z   environment-name: tardis
+2025-02-20T07:16:33.3359520Z   cache-environment: true
+2025-02-20T07:16:33.3359680Z   cache-downloads: true
+2025-02-20T07:16:33.3359830Z env:
+2025-02-20T07:16:33.3359950Z   CACHE_NUMBER: 0
+2025-02-20T07:16:33.3360390Z   PYTEST_FLAGS: --tardis-regression-data=/Users/runner/work/tardis/tardis/tardis-regression-data --cov=tardis --cov-report=xml --cov-report=html --cov-append
+2025-02-20T07:16:33.3360850Z   CODECOV_TOKEN: 
+2025-02-20T07:16:33.3360980Z ##[endgroup]
+2025-02-20T07:16:33.6279470Z Will download micromamba to /Users/runner/micromamba-bin/micromamba
+2025-02-20T07:16:33.6284680Z ##[group]Install micromamba
+2025-02-20T07:16:34.1722900Z micromamba installed to /Users/runner/micromamba-bin/micromamba
+2025-02-20T07:16:34.1723420Z ##[endgroup]
+2025-02-20T07:16:34.1723960Z Adding conda-forge to condarc channels ...
+2025-02-20T07:16:34.1747580Z ##[group]Initialize micromamba for bash.
+2025-02-20T07:16:34.1756960Z [command]/Users/runner/micromamba-bin/micromamba shell init -s bash -r /Users/runner/micromamba --log-level warning --rc-file /Users/runner/work/_temp/setup-micromamba/.condarc
+2025-02-20T07:16:34.2006660Z Modifying RC file "/Users/runner/.bash_profile"
+2025-02-20T07:16:34.2009800Z Generating config for root prefix [1m"/Users/runner/micromamba"[0m
+2025-02-20T07:16:34.2010850Z Setting mamba executable to: [1m"/Users/runner/micromamba-bin/micromamba"[0m
+2025-02-20T07:16:34.2011450Z Adding (or replacing) the following in your "/Users/runner/.bash_profile" file
+2025-02-20T07:16:34.2036200Z 
+2025-02-20T07:16:34.2037740Z # >>> mamba initialize >>>
+2025-02-20T07:16:34.2038180Z # !! Contents within this block are managed by 'mamba init' !!
+2025-02-20T07:16:34.2038660Z export MAMBA_EXE='/Users/runner/micromamba-bin/micromamba';
+2025-02-20T07:16:34.2039160Z export MAMBA_ROOT_PREFIX='/Users/runner/micromamba';
+2025-02-20T07:16:34.2039880Z __mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+2025-02-20T07:16:34.2040360Z if [ $? -eq 0 ]; then
+2025-02-20T07:16:34.2048860Z     eval "$__mamba_setup"
+2025-02-20T07:16:34.2049210Z else
+2025-02-20T07:16:34.2049550Z     alias micromamba="$MAMBA_EXE"  # Fallback on help from mamba activate
+2025-02-20T07:16:34.2049950Z fi
+2025-02-20T07:16:34.2050200Z unset __mamba_setup
+2025-02-20T07:16:34.2050460Z # <<< mamba initialize <<<
+2025-02-20T07:16:34.2050670Z 
+2025-02-20T07:16:34.2051360Z ##[endgroup]
+2025-02-20T07:16:34.2054570Z ##[group]Restoring downloads from `/Users/runner/micromamba/pkgs` ...
+2025-02-20T07:16:35.2998740Z Received 67108864 of 310594474 (21.6%), 63.9 MBs/sec
+2025-02-20T07:16:36.3030470Z Received 142606336 of 310594474 (45.9%), 67.8 MBs/sec
+2025-02-20T07:16:37.3137300Z Received 201326592 of 310594474 (64.8%), 63.9 MBs/sec
+2025-02-20T07:16:38.3093540Z Received 310594474 of 310594474 (100.0%), 73.9 MBs/sec
+2025-02-20T07:16:38.3507770Z Cache Size: ~296 MB (310594474 B)
+2025-02-20T07:16:38.3546750Z [command]/opt/homebrew/bin/gtar -xf /Users/runner/work/_temp/e172b235-c406-4392-aef0-f94bc1e63170/cache.tzst -P -C /Users/runner/work/tardis/tardis --delay-directory-restore --use-compress-program unzstd
+2025-02-20T07:16:38.7916260Z Cache restored successfully
+2025-02-20T07:16:38.7937720Z Restored cache with key `tardis-conda-env-osx-arm64-bf0d0a4d4c847cca72476c6c68c493d56c484aada7e80de0e42c7607fcef5824-v1-osx-arm64`
+2025-02-20T07:16:38.7938580Z ##[endgroup]
+2025-02-20T07:16:38.7962800Z ##[group]Restoring environment `tardis` from `/Users/runner/micromamba/envs/tardis` ...
+2025-02-20T07:16:39.8337560Z Received 67108864 of 385513979 (17.4%), 63.9 MBs/sec
+2025-02-20T07:16:40.8447610Z Received 134217728 of 385513979 (34.8%), 63.9 MBs/sec
+2025-02-20T07:16:41.7631010Z ##[error]The operation was canceled.

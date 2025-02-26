@@ -1,0 +1,184 @@
+2025-02-03T13:58:24.0215579Z ##[group]Run pytest tardis --tardis-regression-data=/home/runner/work/tardis/tardis/tardis-regression-data --cov=tardis --cov-report=xml --cov-report=html --cov-append -m " continuum"
+2025-02-03T13:58:24.0216899Z [36;1mpytest tardis --tardis-regression-data=/home/runner/work/tardis/tardis/tardis-regression-data --cov=tardis --cov-report=xml --cov-report=html --cov-append -m " continuum"[0m
+2025-02-03T13:58:24.0244982Z shell: /usr/bin/bash -l {0}
+2025-02-03T13:58:24.0245235Z env:
+2025-02-03T13:58:24.0245412Z   CACHE_NUMBER: 0
+2025-02-03T13:58:24.0246039Z   PYTEST_FLAGS: --tardis-regression-data=/home/runner/work/tardis/tardis/tardis-regression-data --cov=tardis --cov-report=xml --cov-report=html --cov-append
+2025-02-03T13:58:24.0246706Z   CODECOV_TOKEN: 
+2025-02-03T13:58:24.0246954Z   MAMBA_ROOT_PREFIX: /home/runner/micromamba
+2025-02-03T13:58:24.0247270Z   MAMBA_EXE: /home/runner/micromamba-bin/micromamba
+2025-02-03T13:58:24.0247632Z   CONDARC: /home/runner/work/_temp/setup-micromamba/.condarc
+2025-02-03T13:58:24.0247990Z ##[endgroup]
+2025-02-03T13:58:32.3749150Z ============================= test session starts ==============================
+2025-02-03T13:58:32.3749896Z platform linux -- Python 3.12.4, pytest-8.2.2, pluggy-1.5.0
+2025-02-03T13:58:32.3750502Z rootdir: /home/runner/work/tardis/tardis
+2025-02-03T13:58:32.3751040Z configfile: pyproject.toml
+2025-02-03T13:58:32.3751629Z plugins: anyio-4.4.0, doctestplus-1.2.1, html-4.1.1, metadata-3.1.1, cov-5.0.0
+2025-02-03T13:58:32.3752336Z collected 1796 items / 1794 deselected / 2 selected
+2025-02-03T13:58:32.3752698Z 
+2025-02-03T13:58:34.2316972Z tardis/transport/montecarlo/estimators/tests/test_continuum_property_solver.py E [ 50%]
+2025-02-03T13:58:34.2319986Z                                                                          [ 50%]
+2025-02-03T13:58:41.3183748Z tardis/transport/montecarlo/tests/test_continuum.py E                    [100%]
+2025-02-03T13:58:41.3184423Z 
+2025-02-03T13:58:41.3184660Z ==================================== ERRORS ====================================
+2025-02-03T13:58:41.3185386Z _________________ ERROR at setup of test_continuum_estimators __________________
+2025-02-03T13:58:41.3185905Z 
+2025-02-03T13:58:41.3186664Z nlte_atomic_data_fname = PosixPath('/home/runner/work/tardis/tardis/tardis-regression-data/atom_data/nlte_atom_data/TestNLTE_He_Ti.h5')
+2025-02-03T13:58:41.3187584Z 
+2025-02-03T13:58:41.3187759Z     @pytest.fixture  # (scope="session")
+2025-02-03T13:58:41.3189279Z     def nlte_atomic_dataset(nlte_atomic_data_fname):
+2025-02-03T13:58:41.3189790Z         """
+2025-02-03T13:58:41.3190070Z         Atomic dataset used for NLTE ionization solver tests.
+2025-02-03T13:58:41.3190415Z         """
+2025-02-03T13:58:41.3190706Z >       nlte_atomic_data = AtomData.from_hdf(nlte_atomic_data_fname)
+2025-02-03T13:58:41.3191010Z 
+2025-02-03T13:58:41.3191127Z tardis/tests/fixtures/atom_data.py:73: 
+2025-02-03T13:58:41.3191472Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2025-02-03T13:58:41.3191835Z tardis/io/atom_data/base.py:192: in from_hdf
+2025-02-03T13:58:41.3192185Z     with pd.HDFStore(fname, "r") as store:
+2025-02-03T13:58:41.3192738Z ../../../micromamba/envs/tardis/lib/python3.12/site-packages/pandas/io/pytables.py:585: in __init__
+2025-02-03T13:58:41.3193272Z     self.open(mode=mode, **kwargs)
+2025-02-03T13:58:41.3193754Z ../../../micromamba/envs/tardis/lib/python3.12/site-packages/pandas/io/pytables.py:745: in open
+2025-02-03T13:58:41.3194346Z     self._handle = tables.open_file(self._path, self._mode, **kwargs)
+2025-02-03T13:58:41.3194930Z ../../../micromamba/envs/tardis/lib/python3.12/site-packages/tables/file.py:294: in open_file
+2025-02-03T13:58:41.3195505Z     return File(filename, mode, title, root_uep, filters, **kwargs)
+2025-02-03T13:58:41.3195986Z ../../../micromamba/envs/tardis/lib/python3.12/site-packages/tables/file.py:744: in __init__
+2025-02-03T13:58:41.3196759Z     self._g_new(filename, mode, **params)
+2025-02-03T13:58:41.3197061Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2025-02-03T13:58:41.3197459Z 
+2025-02-03T13:58:41.3197529Z >   ???
+2025-02-03T13:58:41.3197781Z E   tables.exceptions.HDF5ExtError: HDF5 error back trace
+2025-02-03T13:58:41.3198294Z E   
+2025-02-03T13:58:41.3198487Z E     File "H5F.c", line 836, in H5Fopen
+2025-02-03T13:58:41.3198769Z E       unable to synchronously open file
+2025-02-03T13:58:41.3199072Z E     File "H5F.c", line 796, in H5F__open_api_common
+2025-02-03T13:58:41.3199356Z E       unable to open file
+2025-02-03T13:58:41.3199622Z E     File "H5VLcallback.c", line 3863, in H5VL_file_open
+2025-02-03T13:58:41.3199903Z E       open failed
+2025-02-03T13:58:41.3200143Z E     File "H5VLcallback.c", line 3675, in H5VL__file_open
+2025-02-03T13:58:41.3200425Z E       open failed
+2025-02-03T13:58:41.3200698Z E     File "H5VLnative_file.c", line 128, in H5VL__native_file_open
+2025-02-03T13:58:41.3201022Z E       unable to open file
+2025-02-03T13:58:41.3201262Z E     File "H5Fint.c", line 2018, in H5F_open
+2025-02-03T13:58:41.3201536Z E       unable to read superblock
+2025-02-03T13:58:41.3201804Z E     File "H5Fsuper.c", line 392, in H5F__super_read
+2025-02-03T13:58:41.3202088Z E       file signature not found
+2025-02-03T13:58:41.3202313Z E   
+2025-02-03T13:58:41.3202493Z E   End of HDF5 error back trace
+2025-02-03T13:58:41.3202712Z E   
+2025-02-03T13:58:41.3203199Z E   Unable to open/create file '/home/runner/work/tardis/tardis/tardis-regression-data/atom_data/nlte_atom_data/TestNLTE_He_Ti.h5'
+2025-02-03T13:58:41.3203674Z 
+2025-02-03T13:58:41.3203779Z tables/hdf5extension.pyx:512: HDF5ExtError
+2025-02-03T13:58:41.3204138Z _________________ ERROR at setup of test_montecarlo_continuum __________________
+2025-02-03T13:58:41.3204401Z 
+2025-02-03T13:58:41.3204811Z nlte_atomic_data_fname = PosixPath('/home/runner/work/tardis/tardis/tardis-regression-data/atom_data/nlte_atom_data/TestNLTE_He_Ti.h5')
+2025-02-03T13:58:41.3205320Z 
+2025-02-03T13:58:41.3205417Z     @pytest.fixture  # (scope="session")
+2025-02-03T13:58:41.3205723Z     def nlte_atomic_dataset(nlte_atomic_data_fname):
+2025-02-03T13:58:41.3206009Z         """
+2025-02-03T13:58:41.3206246Z         Atomic dataset used for NLTE ionization solver tests.
+2025-02-03T13:58:41.3206537Z         """
+2025-02-03T13:58:41.3206782Z >       nlte_atomic_data = AtomData.from_hdf(nlte_atomic_data_fname)
+2025-02-03T13:58:41.3207021Z 
+2025-02-03T13:58:41.3207122Z tardis/tests/fixtures/atom_data.py:73: 
+2025-02-03T13:58:41.3207418Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2025-02-03T13:58:41.3207730Z tardis/io/atom_data/base.py:192: in from_hdf
+2025-02-03T13:58:41.3208194Z     with pd.HDFStore(fname, "r") as store:
+2025-02-03T13:58:41.3208675Z ../../../micromamba/envs/tardis/lib/python3.12/site-packages/pandas/io/pytables.py:585: in __init__
+2025-02-03T13:58:41.3209133Z     self.open(mode=mode, **kwargs)
+2025-02-03T13:58:41.3209542Z ../../../micromamba/envs/tardis/lib/python3.12/site-packages/pandas/io/pytables.py:745: in open
+2025-02-03T13:58:41.3210041Z     self._handle = tables.open_file(self._path, self._mode, **kwargs)
+2025-02-03T13:58:41.3210532Z ../../../micromamba/envs/tardis/lib/python3.12/site-packages/tables/file.py:294: in open_file
+2025-02-03T13:58:41.3211021Z     return File(filename, mode, title, root_uep, filters, **kwargs)
+2025-02-03T13:58:41.3211525Z ../../../micromamba/envs/tardis/lib/python3.12/site-packages/tables/file.py:744: in __init__
+2025-02-03T13:58:41.3211952Z     self._g_new(filename, mode, **params)
+2025-02-03T13:58:41.3212244Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2025-02-03T13:58:41.3212454Z 
+2025-02-03T13:58:41.3212524Z >   ???
+2025-02-03T13:58:41.3212765Z E   tables.exceptions.HDF5ExtError: HDF5 error back trace
+2025-02-03T13:58:41.3213069Z E   
+2025-02-03T13:58:41.3213382Z E     File "H5F.c", line 836, in H5Fopen
+2025-02-03T13:58:41.3213647Z E       unable to synchronously open file
+2025-02-03T13:58:41.3213937Z E     File "H5F.c", line 796, in H5F__open_api_common
+2025-02-03T13:58:41.3214216Z E       unable to open file
+2025-02-03T13:58:41.3214597Z E     File "H5VLcallback.c", line 3863, in H5VL_file_open
+2025-02-03T13:58:41.3214877Z E       open failed
+2025-02-03T13:58:41.3215117Z E     File "H5VLcallback.c", line 3675, in H5VL__file_open
+2025-02-03T13:58:41.3215393Z E       open failed
+2025-02-03T13:58:41.3215653Z E     File "H5VLnative_file.c", line 128, in H5VL__native_file_open
+2025-02-03T13:58:41.3215967Z E       unable to open file
+2025-02-03T13:58:41.3216214Z E     File "H5Fint.c", line 2018, in H5F_open
+2025-02-03T13:58:41.3216487Z E       unable to read superblock
+2025-02-03T13:58:41.3216756Z E     File "H5Fsuper.c", line 392, in H5F__super_read
+2025-02-03T13:58:41.3217038Z E       file signature not found
+2025-02-03T13:58:41.3217264Z E   
+2025-02-03T13:58:41.3217443Z E   End of HDF5 error back trace
+2025-02-03T13:58:41.3217661Z E   
+2025-02-03T13:58:41.3218326Z E   Unable to open/create file '/home/runner/work/tardis/tardis/tardis-regression-data/atom_data/nlte_atom_data/TestNLTE_He_Ti.h5'
+2025-02-03T13:58:41.3218823Z 
+2025-02-03T13:58:41.3218926Z tables/hdf5extension.pyx:512: HDF5ExtError
+2025-02-03T13:58:41.3219234Z =============================== warnings summary ===============================
+2025-02-03T13:58:41.3219565Z tardis/io/configuration/config_validator.py:6
+2025-02-03T13:58:41.3219872Z tardis/io/configuration/config_validator.py:6
+2025-02-03T13:58:41.3220379Z   /home/runner/work/tardis/tardis/tardis/io/configuration/config_validator.py:6: DeprecationWarning:
+2025-02-03T13:58:41.3220861Z   
+2025-02-03T13:58:41.3222107Z   jsonschema.RefResolver is deprecated as of v4.18.0, in favor of the https://github.com/python-jsonschema/referencing library, which provides more compliant referencing behavior as well as more flexible APIs for customization. A future release will remove RefResolver. Please file a feature request (on referencing) if you are missing an API for the kind of customization you need.
+2025-02-03T13:58:41.3223336Z 
+2025-02-03T13:58:41.3223581Z ../../../micromamba/envs/tardis/lib/python3.12/site-packages/jupyter_client/connect.py:22
+2025-02-03T13:58:41.3224276Z   /home/runner/micromamba/envs/tardis/lib/python3.12/site-packages/jupyter_client/connect.py:22: DeprecationWarning:
+2025-02-03T13:58:41.3224792Z   
+2025-02-03T13:58:41.3225039Z   Jupyter is migrating its paths to use standard platformdirs
+2025-02-03T13:58:41.3225434Z   given by the platformdirs library.  To remove this warning and
+2025-02-03T13:58:41.3225841Z   see the appropriate new directories, set the environment variable
+2025-02-03T13:58:41.3226241Z   `JUPYTER_PLATFORM_DIRS=1` and then run `jupyter --paths`.
+2025-02-03T13:58:41.3226626Z   The use of platformdirs will be the default in `jupyter_core` v6
+2025-02-03T13:58:41.3226870Z 
+2025-02-03T13:58:41.3227069Z -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+2025-02-03T13:58:41.3227366Z 
+2025-02-03T13:58:41.3227532Z ---------- coverage: platform linux, python 3.12.4-final-0 -----------
+2025-02-03T13:58:41.3227906Z Coverage HTML written to dir coverage_html_report
+2025-02-03T13:58:41.3228396Z Coverage XML written to file coverage.xml
+2025-02-03T13:58:41.3228581Z 
+2025-02-03T13:58:41.3228711Z =========================== short test summary info ============================
+2025-02-03T13:58:41.3233487Z ERROR tardis/transport/montecarlo/estimators/tests/test_continuum_property_solver.py::test_continuum_estimators - tables.exceptions.HDF5ExtError: HDF5 error back trace
+2025-02-03T13:58:41.3234153Z 
+2025-02-03T13:58:41.3234255Z   File "H5F.c", line 836, in H5Fopen
+2025-02-03T13:58:41.3234530Z     unable to synchronously open file
+2025-02-03T13:58:41.3234830Z   File "H5F.c", line 796, in H5F__open_api_common
+2025-02-03T13:58:41.3235125Z     unable to open file
+2025-02-03T13:58:41.3235384Z   File "H5VLcallback.c", line 3863, in H5VL_file_open
+2025-02-03T13:58:41.3235850Z     open failed
+2025-02-03T13:58:41.3236084Z   File "H5VLcallback.c", line 3675, in H5VL__file_open
+2025-02-03T13:58:41.3236358Z     open failed
+2025-02-03T13:58:41.3236607Z   File "H5VLnative_file.c", line 128, in H5VL__native_file_open
+2025-02-03T13:58:41.3237026Z     unable to open file
+2025-02-03T13:58:41.3237239Z   File "H5Fint.c", line 2018, in H5F_open
+2025-02-03T13:58:41.3237497Z     unable to read superblock
+2025-02-03T13:58:41.3237751Z   File "H5Fsuper.c", line 392, in H5F__super_read
+2025-02-03T13:58:41.3238259Z     file signature not found
+2025-02-03T13:58:41.3238423Z 
+2025-02-03T13:58:41.3238504Z End of HDF5 error back trace
+2025-02-03T13:58:41.3238652Z 
+2025-02-03T13:58:41.3239041Z Unable to open/create file '/home/runner/work/tardis/tardis/tardis-regression-data/atom_data/nlte_atom_data/TestNLTE_He_Ti.h5'
+2025-02-03T13:58:41.3239961Z ERROR tardis/transport/montecarlo/tests/test_continuum.py::test_montecarlo_continuum - tables.exceptions.HDF5ExtError: HDF5 error back trace
+2025-02-03T13:58:41.3240485Z 
+2025-02-03T13:58:41.3240576Z   File "H5F.c", line 836, in H5Fopen
+2025-02-03T13:58:41.3240835Z     unable to synchronously open file
+2025-02-03T13:58:41.3241108Z   File "H5F.c", line 796, in H5F__open_api_common
+2025-02-03T13:58:41.3241378Z     unable to open file
+2025-02-03T13:58:41.3241623Z   File "H5VLcallback.c", line 3863, in H5VL_file_open
+2025-02-03T13:58:41.3241898Z     open failed
+2025-02-03T13:58:41.3242123Z   File "H5VLcallback.c", line 3675, in H5VL__file_open
+2025-02-03T13:58:41.3242395Z     open failed
+2025-02-03T13:58:41.3242648Z   File "H5VLnative_file.c", line 128, in H5VL__native_file_open
+2025-02-03T13:58:41.3242958Z     unable to open file
+2025-02-03T13:58:41.3243176Z   File "H5Fint.c", line 2018, in H5F_open
+2025-02-03T13:58:41.3243432Z     unable to read superblock
+2025-02-03T13:58:41.3243684Z   File "H5Fsuper.c", line 392, in H5F__super_read
+2025-02-03T13:58:41.3243951Z     file signature not found
+2025-02-03T13:58:41.3244100Z 
+2025-02-03T13:58:41.3244184Z End of HDF5 error back trace
+2025-02-03T13:58:41.3244329Z 
+2025-02-03T13:58:41.3244719Z Unable to open/create file '/home/runner/work/tardis/tardis/tardis-regression-data/atom_data/nlte_atom_data/TestNLTE_He_Ti.h5'
+2025-02-03T13:58:41.3245351Z =============== 1794 deselected, 3 warnings, 2 errors in 10.52s ================
+2025-02-03T13:58:42.0060444Z ##[error]Process completed with exit code 1.
