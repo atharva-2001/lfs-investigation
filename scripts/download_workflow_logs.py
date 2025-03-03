@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 import zipfile
 import io
 
-def download_workflow_logs(token, owner="tardis-sn", repo="tardis", workflow_file="tests.yml", months=3):
+def download_workflow_logs(token, owner="tardis-sn", repo="tardis", workflow_file="tests.yml", months=1):
     """
     Download logs for all runs of a specific GitHub Actions workflow from the last N months.
     
